@@ -3,317 +3,215 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amethyst Hosting · Servidores Premium</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>Amethyst Hosting · Premium Infrastructure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root {
-  --bg-deep: #060010;
-  --bg-mid: #0e0420;
-  --bg-card: rgba(28, 10, 54, 0.55);
-  --violet-1: #9d4edd;
-  --violet-2: #c77dff;
-  --violet-3: #7b2cbf;
-  --violet-glow: #e0aaff;
-  --pink-accent: #ff5bd1;
-  --text-primary: #f3e9ff;
-  --text-secondary: #b8a3d9;
-  --text-muted: #7e6a99;
-  --border-soft: rgba(199, 125, 255, 0.18);
-  --border-glow: rgba(199, 125, 255, 0.5);
+  --bg-deep: #0a0a0c;
+  --bg-surface: #111114;
+  --bg-elevated: #16161a;
+  --accent: #9d4edd;
+  --accent-dim: rgba(157, 78, 221, 0.1);
+  --accent-glow: rgba(157, 78, 221, 0.4);
+  --text-primary: #f5f5f7;
+  --text-secondary: #a1a1a6;
+  --text-muted: #6e6e73;
+  --border-soft: rgba(255, 255, 255, 0.06);
+  --border-hover: rgba(157, 78, 221, 0.3);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Outfit', sans-serif;
+  font-family: 'Inter', sans-serif;
   background: var(--bg-deep);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
-  position: relative;
-  line-height: 1.5;
+  font-weight: 300;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* ===== FONDO ATMOSFÉRICO ===== */
-.bg-atmosphere {
-  position: fixed; inset: 0; z-index: -3;
-  background:
-    radial-gradient(ellipse at 20% 0%, rgba(123, 44, 191, 0.28), transparent 50%),
-    radial-gradient(ellipse at 80% 100%, rgba(157, 78, 221, 0.22), transparent 50%),
-    radial-gradient(ellipse at 50% 50%, rgba(38, 8, 72, 0.4), transparent 70%),
-    linear-gradient(180deg, #060010 0%, #0a0118 50%, #060010 100%);
-}
-
-.bg-grid {
-  position: fixed; inset: 0; z-index: -2;
-  background-image:
-    linear-gradient(rgba(199, 125, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(199, 125, 255, 0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
-}
-
-.crystals-container { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
-.crystal { position: absolute; top: -120px; opacity: 0; animation: fall linear infinite; will-change: transform, opacity; }
-.crystal-shape { width: 100%; height: 100%; clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); filter: blur(0.4px); }
-
-@keyframes fall {
-  0% { transform: translateY(-120px) rotate(0deg); opacity: 0; }
-  10% { opacity: var(--max-opacity, 0.6); }
-  90% { opacity: var(--max-opacity, 0.6); }
-  100% { transform: translateY(110vh) rotate(420deg); opacity: 0; }
+/* ===== FONDO DE PARTÍCULAS (STARDUST) ===== */
+.particles-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
+.particle { position: absolute; background: var(--accent); border-radius: 50%; opacity: 0; animation: fallStardust linear infinite; }
+@keyframes fallStardust {
+  0% { transform: translateY(-100px) translateX(0); opacity: 0; }
+  10% { opacity: 0.3; }
+  90% { opacity: 0.3; }
+  100% { transform: translateY(100vh) translateX(20px); opacity: 0; }
 }
 
 /* ===== NAVBAR ===== */
 .navbar {
   position: sticky; top: 0; z-index: 100;
-  backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);
-  background: rgba(10, 2, 24, 0.7); border-bottom: 1px solid var(--border-soft);
+  background: rgba(10, 10, 12, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-soft);
 }
-.nav-container { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-.logo { display: flex; align-items: center; gap: 0.75rem; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--text-primary); text-decoration: none; }
-.logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--violet-2), var(--violet-3)); clip-path: polygon(50% 0%, 100% 35%, 85% 100%, 15% 100%, 0% 35%); box-shadow: 0 0 20px rgba(199, 125, 255, 0.6); position: relative; }
-.logo-icon::after { content: ''; position: absolute; inset: 4px; background: linear-gradient(135deg, rgba(255,255,255,0.45), transparent 60%); clip-path: polygon(50% 0%, 100% 35%, 85% 100%, 15% 100%, 0% 35%); }
-.logo span.accent { background: linear-gradient(135deg, var(--violet-glow), var(--violet-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.nav-menu { display: flex; gap: 0.25rem; list-style: none; }
-.nav-menu a { color: var(--text-secondary); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 500; font-size: 0.92rem; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.4rem; }
-.nav-menu a:hover { color: var(--text-primary); background: rgba(199, 125, 255, 0.08); }
-.nav-cta { background: linear-gradient(135deg, var(--violet-1), var(--violet-3)); color: white; padding: 0.65rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(157, 78, 221, 0.4); }
-.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(157, 78, 221, 0.6); }
-.menu-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.3rem; cursor: pointer; }
+.nav-container { max-width: 1200px; margin: 0 auto; padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.1rem; font-weight: 500; letter-spacing: -0.01em; text-decoration: none; color: var(--text-primary); display: flex; align-items: center; gap: 0.6rem; }
+.logo-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 12px var(--accent-glow); }
+.nav-menu { display: flex; gap: 2.5rem; list-style: none; }
+.nav-menu a { font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; font-weight: 400; transition: color 0.3s ease; position: relative; }
+.nav-menu a:hover { color: var(--text-primary); }
+.menu-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.2rem; cursor: pointer; }
 
 /* ===== HERO ===== */
-.hero { position: relative; padding: 5rem 2rem 3rem; text-align: center; max-width: 1400px; margin: 0 auto; }
-.hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 100px; background: rgba(199, 125, 255, 0.1); border: 1px solid var(--border-soft); font-size: 0.82rem; color: var(--violet-2); margin-bottom: 1.75rem; font-weight: 500; }
-.hero-badge::before { content: ''; width: 8px; height: 8px; background: var(--violet-2); border-radius: 50%; box-shadow: 0 0 10px var(--violet-2); animation: pulse 2s infinite; }
-@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.3); } }
-.hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 6vw, 4.75rem); line-height: 1.05; margin-bottom: 1.25rem; letter-spacing: -0.02em; }
-.hero h1 .gradient { background: linear-gradient(135deg, var(--violet-glow) 0%, var(--violet-2) 50%, var(--pink-accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
-.hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 640px; margin: 0 auto; line-height: 1.65; }
+.hero { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 4rem; text-align: center; }
+.hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 200; letter-spacing: -0.03em; margin-bottom: 1.5rem; line-height: 1.1; }
+.hero h1 span { font-weight: 600; color: var(--accent); }
+.hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 500px; margin: 0 auto; font-weight: 300; }
 
-/* ===== SECTION TITLE ===== */
-.section-title { text-align: center; margin-bottom: 3rem; padding: 0 1rem; }
-.section-title h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: 0.6rem; letter-spacing: -0.02em; }
-.section-title p { color: var(--text-secondary); font-size: 1.02rem; max-width: 580px; margin: 0 auto; }
+/* ===== SECCIONES ===== */
+.section { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
+.section-header { margin-bottom: 3rem; text-align: center; }
+.section-header h2 { font-size: 1.75rem; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+.section-header p { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; }
 
-/* ===== PLANES Y CATEGORÍAS ===== */
-.plans-section { max-width: 1400px; margin: 0 auto; padding: 4rem 2rem 2rem; }
-
-.category-tabs {
-  display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 3rem; flex-wrap: wrap;
-}
+/* ===== CATEGORÍAS Y PLANES ===== */
+.category-tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
 .cat-tab {
-  background: rgba(28, 10, 54, 0.4); border: 1px solid var(--border-soft); color: var(--text-secondary);
-  padding: 0.8rem 1.8rem; border-radius: 12px; cursor: pointer; font-family: inherit; font-weight: 600;
-  font-size: 0.95rem; transition: all 0.3s ease; backdrop-filter: blur(10px);
-  display: flex; flex-direction: column; align-items: center; gap: 0.2rem; min-width: 150px;
+  background: transparent; border: 1px solid var(--border-soft); color: var(--text-secondary);
+  padding: 0.7rem 1.5rem; border-radius: 8px; cursor: pointer; font-family: 'Inter', sans-serif;
+  font-weight: 500; font-size: 0.85rem; transition: all 0.3s ease; display: flex; flex-direction: column; gap: 0.1rem; align-items: center;
 }
-.cat-tab span { font-size: 0.7rem; font-weight: 400; color: var(--text-muted); }
-.cat-tab:hover { border-color: var(--border-glow); color: var(--text-primary); }
-.cat-tab.active {
-  background: linear-gradient(135deg, rgba(157, 78, 221, 0.3), rgba(123, 44, 191, 0.2));
-  border-color: var(--violet-2); color: var(--text-primary); box-shadow: 0 0 25px rgba(157, 78, 221, 0.3);
-}
-.cat-tab.active span { color: var(--violet-glow); }
+.cat-tab span { font-size: 0.7rem; font-weight: 300; color: var(--text-muted); }
+.cat-tab:hover { border-color: var(--border-hover); color: var(--text-primary); }
+.cat-tab.active { background: var(--bg-elevated); border-color: var(--accent); color: var(--text-primary); box-shadow: 0 0 15px rgba(157, 78, 221, 0.1); }
+.cat-tab.active span { color: var(--accent); }
 
-.plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 1.5rem; }
-
-.plan-card {
-  position: relative; background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 20px;
-  padding: 1.85rem 1.5rem; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); overflow: hidden; display: flex; flex-direction: column;
-}
-.plan-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent 0%, rgba(199, 125, 255, 0.1) 50%, transparent 100%); opacity: 0; transition: opacity 0.4s ease; pointer-events: none; }
-.plan-card:hover { transform: translateY(-8px); border-color: var(--violet-2); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(157, 78, 221, 0.3); }
-.plan-card:hover::before { opacity: 1; }
-.plan-card.popular { border-color: var(--violet-2); background: linear-gradient(180deg, rgba(157, 78, 221, 0.14), rgba(28, 10, 54, 0.55)); box-shadow: 0 0 40px rgba(157, 78, 221, 0.22); }
-.plan-card.popular::after { content: 'POPULAR'; position: absolute; top: 1.1rem; right: 1.1rem; background: linear-gradient(135deg, var(--violet-2), var(--pink-accent)); color: white; padding: 0.25rem 0.7rem; border-radius: 100px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; box-shadow: 0 4px 15px rgba(199, 125, 255, 0.4); }
-
-.plan-name { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.2rem; }
-.plan-tag { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1.4rem; }
-.plan-price { margin-bottom: 1.4rem; display: flex; align-items: baseline; gap: 0.2rem; }
-.plan-price .currency { font-size: 1.1rem; color: var(--violet-2); font-weight: 600; }
-.plan-price .amount { font-family: 'Syne', sans-serif; font-size: 2.85rem; font-weight: 800; background: linear-gradient(135deg, var(--violet-glow), var(--violet-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
-.plan-price .period { font-size: 0.85rem; color: var(--text-muted); margin-left: 0.25rem; }
-
-.plan-specs { list-style: none; margin-bottom: 1.5rem; flex: 1; }
-.plan-specs li { display: flex; align-items: center; gap: 0.75rem; padding: 0.55rem 0; border-bottom: 1px solid rgba(199, 125, 255, 0.08); font-size: 0.86rem; color: var(--text-secondary); }
+.plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.plan-card { background: var(--bg-surface); border: 1px solid var(--border-soft); border-radius: 8px; padding: 2.5rem 2rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; }
+.plan-card:hover { background: var(--bg-elevated); border-color: var(--border-hover); transform: translateY(-4px); }
+.plan-tier { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem; font-weight: 500; }
+.plan-price { font-size: 2.5rem; font-weight: 300; margin-bottom: 2rem; letter-spacing: -0.02em; }
+.plan-price span { font-size: 0.9rem; color: var(--text-muted); font-weight: 300; }
+.plan-specs { list-style: none; margin-bottom: 2.5rem; flex-grow: 1; }
+.plan-specs li { font-size: 0.9rem; color: var(--text-secondary); padding: 0.6rem 0; border-bottom: 1px solid var(--border-soft); display: flex; align-items: center; gap: 0.75rem; }
 .plan-specs li:last-child { border-bottom: none; }
-.plan-specs li i { color: var(--violet-2); width: 18px; font-size: 0.85rem; text-align: center; }
-.plan-specs li strong { color: var(--text-primary); font-weight: 600; }
+.plan-specs i { color: var(--accent); font-size: 0.75rem; }
+.plan-btn { background: transparent; color: var(--text-primary); border: 1px solid var(--border-soft); padding: 0.85rem; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; text-decoration: none; text-align: center; }
+.plan-btn:hover { background: var(--accent); border-color: var(--accent); color: white; }
 
-.plan-button { display: block; width: 100%; background: linear-gradient(135deg, var(--violet-1), var(--violet-3)); color: white; text-align: center; padding: 0.85rem; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 0.92rem; transition: all 0.3s ease; border: none; cursor: pointer; font-family: inherit; box-shadow: 0 4px 20px rgba(157, 78, 221, 0.3); }
-.plan-button:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(157, 78, 221, 0.55); }
-
-/* ===== DEDICADOS ===== */
-.dedicated-section { max-width: 1400px; margin: 0 auto; padding: 3rem 2rem; }
-.dedicated-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
-.dedicated-card { position: relative; background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 20px; padding: 2rem; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); overflow: hidden; opacity: 0.65; filter: saturate(0.65); }
-.dedicated-card::before { content: ''; position: absolute; inset: 0; background: rgba(10, 2, 24, 0.35); z-index: 1; }
-.dedicated-card > * { position: relative; z-index: 2; }
-.dedicated-lock { position: absolute; top: 1.5rem; right: 1.5rem; z-index: 3; width: 46px; height: 46px; background: rgba(255, 91, 209, 0.12); border: 1px solid rgba(255, 91, 209, 0.4); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--pink-accent); font-size: 1.1rem; }
-.dedicated-soon-badge { display: inline-block; background: rgba(255, 91, 209, 0.15); color: var(--pink-accent); padding: 0.3rem 0.85rem; border-radius: 100px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 1rem; border: 1px solid rgba(255, 91, 209, 0.3); text-transform: uppercase; }
-.dedicated-card h3 { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.25rem; }
-.dedicated-card .sub { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.4rem; }
-.dedicated-specs { list-style: none; }
-.dedicated-specs li { display: flex; align-items: center; gap: 0.75rem; padding: 0.55rem 0; font-size: 0.88rem; color: var(--text-secondary); border-bottom: 1px solid rgba(199, 125, 255, 0.08); }
-.dedicated-specs li i { color: var(--violet-2); width: 18px; text-align: center; }
-.dedicated-specs li:last-child { border-bottom: none; }
-.dedicated-notify { margin-top: 1.5rem; width: 100%; background: rgba(255, 91, 209, 0.1); border: 1px solid rgba(255, 91, 209, 0.3); color: var(--pink-accent); text-align: center; padding: 0.7rem; border-radius: 10px; font-weight: 500; font-size: 0.85rem; cursor: not-allowed; }
+/* ===== DEDICADOS (COMING SOON) ===== */
+.dedicated-card { background: var(--bg-surface); border: 1px solid var(--border-soft); border-radius: 8px; padding: 4rem 2rem; text-align: center; position: relative; overflow: hidden; opacity: 0.6; pointer-events: none; }
+.dedicated-card::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.01) 10px, rgba(255, 255, 255, 0.01) 20px); }
+.dedicated-content { position: relative; z-index: 1; }
+.dedicated-tag { display: inline-block; padding: 0.3rem 0.8rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-soft); border-radius: 100px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1.5rem; }
+.dedicated-card h3 { font-size: 1.5rem; font-weight: 400; margin-bottom: 0.5rem; }
+.dedicated-card p { color: var(--text-muted); font-size: 0.9rem; }
 
 /* ===== SETUPS ===== */
-.setup-section { max-width: 1400px; margin: 0 auto; padding: 3rem 2rem; }
-.setup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-.setup-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 20px; padding: 1.85rem; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: all 0.4s ease; position: relative; overflow: hidden; }
-.setup-card:hover { transform: translateY(-5px); border-color: var(--violet-2); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(157, 78, 221, 0.22); }
-.setup-icon { width: 54px; height: 54px; background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(123, 44, 191, 0.1)); border: 1px solid var(--border-soft); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--violet-2); margin-bottom: 1.15rem; }
-.setup-card h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.6rem; }
-.setup-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.1rem; }
-.setup-steps { list-style: none; counter-reset: step; }
-.setup-steps li { counter-increment: step; padding: 0.35rem 0; color: var(--text-muted); font-size: 0.83rem; display: flex; align-items: center; gap: 0.55rem; }
-.setup-steps li::before { content: counter(step); width: 22px; height: 22px; background: rgba(199, 125, 255, 0.1); border: 1px solid var(--border-soft); color: var(--violet-2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; flex-shrink: 0; }
+.setups-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+.setup-item { padding: 2rem; border-left: 1px solid var(--border-soft); transition: border-color 0.3s ease; }
+.setup-item:hover { border-left-color: var(--accent); }
+.setup-icon { font-size: 1.2rem; color: var(--accent); margin-bottom: 1.25rem; }
+.setup-item h4 { font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; }
+.setup-item p { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; }
 
 /* ===== RESEÑAS ===== */
-.reviews-section { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; }
-.review-form-container { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 20px; padding: 2rem; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); margin-bottom: 2.5rem; }
-.review-form { display: flex; flex-direction: column; gap: 1.2rem; }
-.star-rating { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 0.2rem; }
+.reviews-container { max-width: 700px; margin: 0 auto; }
+.review-form { background: var(--bg-surface); border: 1px solid var(--border-soft); border-radius: 8px; padding: 2rem; margin-bottom: 2rem; }
+.star-rating { display: flex; flex-direction: row-reverse; justify-content: center; gap: 0.5rem; margin-bottom: 1.5rem; }
 .star-rating input[type="radio"] { display: none; }
-.star-rating label { font-size: 1.8rem; color: var(--text-muted); cursor: pointer; transition: color 0.2s; }
-.star-rating input[type="radio"]:checked ~ label, .star-rating label:hover, .star-rating label:hover ~ label { color: #FFC107; }
-.review-textarea { width: 100%; background: rgba(199, 125, 255, 0.05); border: 1px solid var(--border-soft); color: var(--text-primary); padding: 0.85rem 1rem; border-radius: 12px; font-family: inherit; font-size: 0.92rem; outline: none; resize: vertical; min-height: 100px; transition: border-color 0.3s; }
-.review-textarea:focus { border-color: var(--violet-2); }
-.review-textarea::placeholder { color: var(--text-muted); }
-.submit-review-btn { align-self: flex-end; background: linear-gradient(135deg, var(--violet-1), var(--violet-3)); color: white; border: none; padding: 0.7rem 1.6rem; border-radius: 10px; font-family: inherit; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem; }
-.submit-review-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(157, 78, 221, 0.4); }
-.reviews-list { display: flex; flex-direction: column; gap: 1.25rem; }
-.review-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 18px; padding: 1.5rem; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); animation: msgIn 0.4s ease; }
-.review-card-header { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1rem; }
-.anonymous-icon { width: 44px; height: 44px; border-radius: 50%; background: rgba(199, 125, 255, 0.1); border: 2px solid var(--border-glow); display: flex; align-items: center; justify-content: center; color: var(--violet-2); font-size: 1.1rem; }
-.review-card-meta h4 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; }
+.star-rating label { font-size: 1.5rem; color: var(--text-muted); cursor: pointer; transition: color 0.2s; }
+.star-rating input[type="radio"]:checked ~ label, .star-rating label:hover, .star-rating label:hover ~ label { color: var(--accent); }
+.review-textarea { width: 100%; background: var(--bg-deep); border: 1px solid var(--border-soft); color: var(--text-primary); padding: 1rem; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.9rem; outline: none; resize: vertical; min-height: 80px; margin-bottom: 1rem; transition: border-color 0.3s; }
+.review-textarea:focus { border-color: var(--border-hover); }
+.submit-review-btn { background: var(--accent); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: opacity 0.3s; display: block; margin-left: auto; }
+.submit-review-btn:hover { opacity: 0.85; }
+.reviews-list { display: flex; flex-direction: column; gap: 1rem; }
+.review-card { background: var(--bg-surface); border: 1px solid var(--border-soft); border-radius: 8px; padding: 1.5rem; }
+.review-card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+.anonymous-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--bg-elevated); border: 1px solid var(--border-soft); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 0.85rem; }
+.review-card-meta h4 { font-size: 0.9rem; font-weight: 500; }
 .review-card-meta .date { font-size: 0.75rem; color: var(--text-muted); }
-.review-card-stars { margin-left: auto; color: #FFC107; font-size: 0.85rem; display: flex; gap: 0.15rem; }
-.review-card-text { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; }
-.no-reviews { text-align: center; color: var(--text-muted); padding: 2rem; border: 1px dashed var(--border-soft); border-radius: 16px; }
+.review-card-stars { margin-left: auto; color: var(--accent); font-size: 0.8rem; }
+.review-card-text { font-size: 0.9rem; color: var(--text-secondary); font-weight: 300; }
+.no-reviews { text-align: center; color: var(--text-muted); padding: 2rem; border: 1px dashed var(--border-soft); border-radius: 8px; font-size: 0.9rem; }
 
-/* ===== CONTACTO ===== */
-.contact-section { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
-.contact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
-.contact-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 20px; padding: 1.85rem; text-decoration: none; color: var(--text-primary); transition: all 0.4s ease; backdrop-filter: blur(20px); display: flex; align-items: center; gap: 1.15rem; text-align: left; }
-.contact-card:hover { transform: translateY(-5px); border-color: var(--violet-2); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(157, 78, 221, 0.25); }
-.contact-card.discord:hover { border-color: #7c84ff; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(124, 132, 255, 0.35); }
-.contact-card.gmail:hover { border-color: #ff7060; }
-.contact-icon { width: 54px; height: 54px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
-.contact-card.discord .contact-icon { background: linear-gradient(135deg, rgba(88, 101, 242, 0.25), rgba(157, 78, 221, 0.2)); border: 1px solid rgba(124, 132, 255, 0.3); color: #aab4ff; }
-.contact-card.gmail .contact-icon { background: linear-gradient(135deg, rgba(234, 67, 53, 0.18), rgba(251, 188, 4, 0.15)); border: 1px solid rgba(234, 67, 53, 0.3); color: #ffad9e; }
-.contact-info h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem; }
-.contact-info p { color: var(--text-secondary); font-size: 0.88rem; word-break: break-all; }
+/* ===== FOOTER / CONTACTO ===== */
+.footer { border-top: 1px solid var(--border-soft); padding: 4rem 2rem 2rem; margin-top: 4rem; }
+.footer-content { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.footer h3 { font-size: 1.5rem; font-weight: 300; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
+.footer p { color: var(--text-muted); margin-bottom: 2.5rem; font-size: 0.9rem; }
+.contact-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+.contact-btn { display: flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.75rem; background: var(--bg-surface); border: 1px solid var(--border-soft); border-radius: 6px; color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: all 0.3s ease; }
+.contact-btn:hover { background: var(--bg-elevated); border-color: var(--border-hover); color: var(--text-primary); }
+.copyright { margin-top: 4rem; color: var(--text-muted); font-size: 0.8rem; font-weight: 300; }
 
-/* ===== FOOTER ===== */
-.footer { border-top: 1px solid var(--border-soft); padding: 2rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; background: rgba(10, 2, 24, 0.5); }
-.footer .footer-logo { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--violet-2); margin-bottom: 0.4rem; display: block; }
-
-/* ===== CHAT WIDGET IA ===== */
+/* ===== ASISTENTE IA ===== */
 .chat-widget { position: fixed; bottom: 24px; right: 24px; z-index: 1000; }
-.chat-toggle { width: 62px; height: 62px; background: linear-gradient(135deg, var(--violet-1), var(--violet-3)); border: none; border-radius: 50%; cursor: pointer; color: white; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 30px rgba(157, 78, 221, 0.55); transition: all 0.3s ease; position: relative; }
-.chat-toggle:hover { transform: scale(1.06); }
-.chat-toggle::before { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--violet-2); opacity: 0.5; animation: ringPulse 2s infinite; }
-@keyframes ringPulse { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(1.4); opacity: 0; } }
-.chat-panel { position: absolute; bottom: 80px; right: 0; width: 360px; max-width: calc(100vw - 48px); height: 500px; max-height: calc(100vh - 120px); background: rgba(15, 5, 30, 0.95); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); border: 1px solid var(--border-glow); border-radius: 20px; display: none; flex-direction: column; overflow: hidden; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(157, 78, 221, 0.22); }
-.chat-panel.open { display: flex; animation: slideUp 0.3s ease; }
-@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.chat-header { background: linear-gradient(135deg, var(--violet-3), var(--violet-1)); padding: 1rem 1.2rem; display: flex; align-items: center; gap: 0.75rem; }
-.chat-avatar { width: 40px; height: 40px; background: rgba(255, 255, 255, 0.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; position: relative; }
-.chat-avatar::after { content: ''; position: absolute; bottom: 1px; right: 1px; width: 11px; height: 11px; background: #4ade80; border-radius: 50%; border: 2px solid var(--violet-3); }
-.chat-header-info h4 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; }
-.chat-header-info p { font-size: 0.74rem; opacity: 0.85; }
-.chat-close { margin-left: auto; background: rgba(255, 255, 255, 0.18); border: none; color: white; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: center; }
-.chat-close:hover { background: rgba(255, 255, 255, 0.3); }
-.chat-messages { flex: 1; overflow-y: auto; padding: 1.2rem; display: flex; flex-direction: column; gap: 0.7rem; }
-.chat-messages::-webkit-scrollbar { width: 6px; }
-.chat-messages::-webkit-scrollbar-track { background: transparent; }
-.chat-messages::-webkit-scrollbar-thumb { background: rgba(199, 125, 255, 0.3); border-radius: 10px; }
-.message { max-width: 85%; padding: 0.65rem 0.95rem; border-radius: 14px; font-size: 0.85rem; line-height: 1.5; animation: msgIn 0.3s ease; }
-@keyframes msgIn { from { transform: translateY(8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-.message.bot { background: rgba(199, 125, 255, 0.12); border: 1px solid var(--border-soft); border-bottom-left-radius: 4px; align-self: flex-start; color: var(--text-primary); }
-.message.user { background: linear-gradient(135deg, var(--violet-1), var(--violet-3)); color: white; border-bottom-right-radius: 4px; align-self: flex-end; }
-.message.bot a { color: var(--violet-2); text-decoration: underline; word-break: break-all; }
-.chat-quick { padding: 0 1.2rem 0.7rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
-.quick-btn { background: rgba(199, 125, 255, 0.08); border: 1px solid var(--border-soft); color: var(--violet-2); padding: 0.38rem 0.75rem; border-radius: 100px; font-size: 0.74rem; cursor: pointer; font-family: inherit; transition: all 0.2s; }
-.quick-btn:hover { background: rgba(199, 125, 255, 0.18); border-color: var(--violet-2); }
-.chat-input { padding: 0.7rem 1.2rem; border-top: 1px solid var(--border-soft); display: flex; gap: 0.5rem; }
-.chat-input input { flex: 1; background: rgba(199, 125, 255, 0.05); border: 1px solid var(--border-soft); color: var(--text-primary); padding: 0.55rem 0.85rem; border-radius: 10px; font-family: inherit; font-size: 0.83rem; outline: none; }
-.chat-input input::placeholder { color: var(--text-muted); }
-.chat-input input:focus { border-color: var(--violet-2); }
-.chat-input button { background: linear-gradient(135deg, var(--violet-1), var(--violet-3)); border: none; color: white; width: 38px; height: 38px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; flex-shrink: 0; }
-.chat-input button:hover { transform: scale(1.05); }
+.chat-toggle { width: 48px; height: 48px; background: var(--bg-surface); border: 1px solid var(--border-soft); border-radius: 50%; cursor: pointer; color: var(--text-primary); display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+.chat-toggle:hover { border-color: var(--accent); color: var(--accent); }
+.chat-panel { position: absolute; bottom: 64px; right: 0; width: 340px; height: 420px; background: var(--bg-surface); border: 1px solid var(--border-soft); border-radius: 12px; display: none; flex-direction: column; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+.chat-panel.open { display: flex; }
+.chat-header { padding: 1.25rem; border-bottom: 1px solid var(--border-soft); display: flex; align-items: center; gap: 0.75rem; }
+.chat-header h4 { font-size: 0.9rem; font-weight: 500; }
+.chat-header span { font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 2px; }
+.chat-close { margin-left: auto; background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 1rem; transition: color 0.2s; }
+.chat-close:hover { color: var(--text-primary); }
+.chat-messages { flex: 1; padding: 1.25rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+.chat-messages::-webkit-scrollbar { width: 4px; }
+.chat-messages::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 10px; }
+.msg { max-width: 85%; font-size: 0.85rem; line-height: 1.5; padding: 0.75rem 1rem; border-radius: 8px; }
+.msg.bot { background: var(--bg-elevated); border: 1px solid var(--border-soft); color: var(--text-secondary); border-top-left-radius: 2px; align-self: flex-start; }
+.msg.user { background: var(--accent-dim); border: 1px solid var(--border-hover); color: var(--text-primary); border-top-right-radius: 2px; align-self: flex-end; }
+.chat-input-area { padding: 1rem; border-top: 1px solid var(--border-soft); display: flex; gap: 0.5rem; }
+.chat-input-area input { flex: 1; background: var(--bg-deep); border: 1px solid var(--border-soft); border-radius: 6px; padding: 0.65rem 0.85rem; color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 0.85rem; outline: none; transition: border-color 0.3s; }
+.chat-input-area input:focus { border-color: var(--border-hover); }
+.chat-input-area input::placeholder { color: var(--text-muted); }
+.chat-send { background: var(--accent); border: none; color: white; width: 36px; height: 36px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s; }
+.chat-send:hover { opacity: 0.8; }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 880px) {
-  .nav-menu { display: none; }
-  .menu-toggle { display: block; }
-  .nav-cta { padding: 0.55rem 1.1rem; font-size: 0.85rem; }
-  .nav-menu.mobile-open { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: rgba(10, 2, 24, 0.97); backdrop-filter: blur(20px); padding: 1rem; gap: 0.25rem; border-bottom: 1px solid var(--border-soft); }
-  .nav-menu.mobile-open a { padding: 0.75rem 1rem; }
-}
 @media (max-width: 768px) {
-  .hero { padding: 3.5rem 1.25rem 2rem; }
-  .plans-section, .dedicated-section, .setup-section, .contact-section, .reviews-section { padding-left: 1.25rem; padding-right: 1.25rem; }
-  .plans-grid { grid-template-columns: 1fr; }
-  .chat-panel { width: calc(100vw - 32px); right: -8px; }
-  .chat-widget { bottom: 16px; right: 16px; }
-}
-@media (max-width: 480px) {
-  .nav-container { padding: 0.85rem 1.25rem; gap: 0.5rem; }
-  .logo { font-size: 1.1rem; gap: 0.5rem; }
-  .logo-icon { width: 30px; height: 30px; }
-  .nav-cta { display: none; }
-  .cat-tab { padding: 0.6rem 1.2rem; font-size: 0.85rem; min-width: 120px; }
-  .plan-card { padding: 1.5rem 1.25rem; }
-  .plan-price .amount { font-size: 2.4rem; }
+  .nav-menu { display: none; }
+  .nav-menu.mobile-open { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--bg-deep); border-bottom: 1px solid var(--border-soft); padding: 1rem; gap: 1rem; }
+  .menu-toggle { display: block; }
+  .hero { padding: 4rem 1.5rem 2rem; }
+  .section { padding: 3rem 1.5rem; }
+  .chat-panel { width: calc(100vw - 48px); }
 }
 </style>
 </head>
 <body>
 
-<div class="bg-atmosphere"></div>
-<div class="bg-grid"></div>
-<div class="crystals-container" id="crystals"></div>
+<div class="particles-bg" id="particlesBg"></div>
 
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="nav-container">
     <a href="#" class="logo">
-      <div class="logo-icon"></div>
-      <span>Amethyst<span class="accent">Hosting</span></span>
+      <div class="logo-dot"></div>
+      Amethyst
     </a>
     <ul class="nav-menu" id="navMenu">
-      <li><a href="#planes"><i class="fas fa-server"></i> Planes</a></li>
-      <li><a href="#dedicados"><i class="fas fa-microchip"></i> Dedicados</a></li>
-      <li><a href="#setups"><i class="fas fa-toolbox"></i> Setups</a></li>
-      <li><a href="#resenas"><i class="fas fa-star"></i> Reseñas</a></li>
-      <li><a href="#contacto"><i class="fas fa-headset"></i> Contacto</a></li>
+      <li><a href="#normales">Servidores Normales</a></li>
+      <li><a href="#dedicados">Servidores Dedicados</a></li>
+      <li><a href="#setups">Setups & Instalación</a></li>
+      <li><a href="#resenas">Reseñas</a></li>
     </ul>
-    <a href="#contacto" class="nav-cta">Comprar ahora</a>
     <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-badge">Infraestructura premium · Salt Lake, Utah 🇺🇸</div>
-  <h1>Hosting con el poder<br>del cristal <span class="gradient">amatista</span></h1>
-  <p>Servidores de alto rendimiento con procesadores Intel, Ryzen 7 y Ryzen 9, almacenamiento NVMe y red optimizada para que tu comunidad nunca experimente el lag.</p>
-</section>
+<header class="hero">
+  <h1>Infraestructura <span>premium</span><br>para tu comunidad.</h1>
+  <p>Rendimiento ininterrumpido, hardware de última generación y soporte dedicado. Diseñado para exigentes.</p>
+</header>
 
-<!-- PLANES NORMALES -->
-<section class="plans-section" id="planes">
-  <div class="section-title">
-    <h2>Planes Normales</h2>
-    <p>Elige la categoría que mejor se adapte a tu comunidad. Desde el Standard hasta el potente Performance.</p>
+<!-- SERVIDORES NORMALES -->
+<section class="section" id="normales">
+  <div class="section-header">
+    <h2>Servidores Normales</h2>
+    <p>Selecciona la categoría que mejor se adapte a tu proyecto.</p>
   </div>
 
   <div class="category-tabs">
@@ -329,114 +227,57 @@ body {
   </div>
 
   <div class="plans-grid" id="plansGrid">
-    <!-- Los planes se generan dinámicamente por JS -->
+    <!-- Generado por JS -->
   </div>
 </section>
 
-<!-- DEDICADOS -->
-<section class="dedicated-section" id="dedicados">
-  <div class="section-title">
+<!-- SERVIDORES DEDICADOS -->
+<section class="section" id="dedicados">
+  <div class="section-header">
     <h2>Servidores Dedicados</h2>
-    <p>Pronto tendrás acceso a hardware exclusivo solo para ti, con la misma potencia base de nuestros planes compartidos pero sin límites.</p>
+    <p>Hardware exclusivo para máxima exigencia.</p>
   </div>
-
-  <div class="dedicated-grid">
-    <div class="dedicated-card">
-      <div class="dedicated-lock"><i class="fas fa-lock"></i></div>
-      <span class="dedicated-soon-badge">Próximamente</span>
-      <h3>Dedicado Standard</h3>
-      <p class="sub">Hardware exclusivo para tu proyecto</p>
-      <ul class="dedicated-specs">
-        <li><i class="fas fa-microchip"></i> Intel Core i7-6700K @4.0GHz</li>
-        <li><i class="fas fa-memory"></i> RAM DDR4 @2400MHz</li>
-        <li><i class="fas fa-layer-group"></i> 8 Threads</li>
-        <li><i class="fas fa-hdd"></i> NVMe SSD</li>
-        <li><i class="fas fa-globe-americas"></i> 🇺🇸 Salt Lake, Utah</li>
-        <li><i class="fas fa-network-wired"></i> 1 IPv4</li>
-      </ul>
-      <div class="dedicated-notify"><i class="fas fa-bell"></i> Te avisaremos al lanzarse</div>
-    </div>
-
-    <div class="dedicated-card">
-      <div class="dedicated-lock"><i class="fas fa-lock"></i></div>
-      <span class="dedicated-soon-badge">Próximamente</span>
-      <h3>Dedicado Performance</h3>
-      <p class="sub">Potencia amplificada para alto tráfico</p>
-      <ul class="dedicated-specs">
-        <li><i class="fas fa-microchip"></i> AMD Ryzen 9 5900X @4.8GHz</li>
-        <li><i class="fas fa-memory"></i> RAM DDR4 @3200MHz</li>
-        <li><i class="fas fa-layer-group"></i> 16 Threads</li>
-        <li><i class="fas fa-hdd"></i> NVMe SSD</li>
-        <li><i class="fas fa-globe-americas"></i> 🇺🇸 Miami, Florida</li>
-        <li><i class="fas fa-network-wired"></i> 1 IPv4</li>
-      </ul>
-      <div class="dedicated-notify"><i class="fas fa-bell"></i> Te avisaremos al lanzarse</div>
+  <div class="dedicated-card">
+    <div class="dedicated-content">
+      <span class="dedicated-tag">Próximamente</span>
+      <h3>Coming Soon</h3>
+      <p>Estamos preparando algo excepcional. Servidores dedicados con Ryzen 9 próximamente disponibles.</p>
     </div>
   </div>
 </section>
 
 <!-- SETUPS -->
-<section class="setup-section" id="setups">
-  <div class="section-title">
-    <h2>Setups e Instalación</h2>
-    <p>Te acompañamos en cada paso para que tu servidor esté listo en minutos. Soporte humano y guías detalladas para tu servidor.</p>
+<section class="section" id="setups">
+  <div class="section-header">
+    <h2>Setups & Instalación</h2>
+    <p>Configuración profesional incluida con cada servicio.</p>
   </div>
-  <div class="setup-grid">
-    <div class="setup-card">
+  <div class="setups-grid">
+    <div class="setup-item">
       <div class="setup-icon"><i class="fas fa-rocket"></i></div>
-      <h3>Instalación inicial</h3>
-      <p>Configuramos tu servidor con el juego, versión y mods que necesites.</p>
-      <ul class="setup-steps">
-        <li>Selecciona tu plan y contáctanos</li>
-        <li>Indica juego, versión y mods</li>
-        <li>Recibes credenciales en minutos</li>
-        <li>Accede al panel y juega</li>
-      </ul>
+      <h4>Despliegue Rápido</h4>
+      <p>Tu servidor activo en minutos con la configuración inicial lista para usar.</p>
     </div>
-    <div class="setup-card">
-      <div class="setup-icon"><i class="fas fa-plug"></i></div>
-      <h3>Plugins y mods</h3>
-      <p>Instalamos y configuramos los plugins esenciales para tu comunidad.</p>
-      <ul class="setup-steps">
-        <li>Dinos qué funcionalidades necesitas</li>
-        <li>Te recomendamos los mejores plugins</li>
-        <li>Los instalamos y configuramos</li>
-        <li>Testeo y optimización</li>
-      </ul>
+    <div class="setup-item">
+      <div class="setup-icon"><i class="fas fa-sliders"></i></div>
+      <h4>Optimización Pro</h4>
+      <p>Ajuste fino de flags y parámetros para exprimir el rendimiento del hardware.</p>
     </div>
-    <div class="setup-card">
-      <div class="setup-icon"><i class="fas fa-bolt"></i></div>
-      <h3>Optimización pro</h3>
-      <p>Afinamos cada parámetro para sacar el máximo rendimiento a tu hardware.</p>
-      <ul class="setup-steps">
-        <li>Análisis de configuración actual</li>
-        <li>Ajuste de flags y JVM</li>
-        <li>Optimización de chunks y red</li>
-        <li>Reporte de mejoras</li>
-      </ul>
-    </div>
-    <div class="setup-card">
-      <div class="setup-icon"><i class="fas fa-shield-alt"></i></div>
-      <h3>Backups y seguridad</h3>
-      <p>Respaldos automáticos y configuración anti-DDoS para proteger tu mundo.</p>
-      <ul class="setup-steps">
-        <li>Configuración de backups diarios</li>
-        <li>Política anti-DDoS activa</li>
-        <li>Permisos y roles de staff</li>
-        <li>Restauración con un clic</li>
-      </ul>
+    <div class="setup-item">
+      <div class="setup-icon"><i class="fas fa-shield-halved"></i></div>
+      <h4>Seguridad y Backups</h4>
+      <p>Respaldos automáticos y protección anti-DDoS para total tranquilidad.</p>
     </div>
   </div>
 </section>
 
 <!-- RESEÑAS -->
-<section class="reviews-section" id="resenas">
-  <div class="section-title">
+<section class="section" id="resenas">
+  <div class="section-header">
     <h2>Reseñas de la comunidad</h2>
-    <p>Tu opinión nos importa. Comparte tu experiencia de forma completamente anónima.</p>
+    <p>Comparte tu experiencia de forma anónima.</p>
   </div>
-
-  <div class="review-form-container">
+  <div class="reviews-container">
     <form class="review-form" id="reviewForm">
       <div class="star-rating">
         <input type="radio" id="star5" name="rating" value="5" required><label for="star5" class="fas fa-star"></label>
@@ -446,143 +287,106 @@ body {
         <input type="radio" id="star1" name="rating" value="1"><label for="star1" class="fas fa-star"></label>
       </div>
       <textarea class="review-textarea" id="reviewText" placeholder="Escribe tu reseña anónima aquí..." required></textarea>
-      <button type="submit" class="submit-review-btn" id="submitReviewBtn">
-        <i class="fas fa-paper-plane"></i> Publicar reseña
-      </button>
+      <button type="submit" class="submit-review-btn">Publicar reseña</button>
     </form>
-  </div>
-
-  <div class="reviews-list" id="reviewsList">
-    <!-- Las reseñas se inyectan aquí -->
+    <div class="reviews-list" id="reviewsList"></div>
   </div>
 </section>
 
-<!-- CONTACTO -->
-<section class="contact-section" id="contacto">
-  <div class="section-title">
-    <h2>Contacto y Soporte</h2>
-    <p>¿Listo para comenzar? Escríbenos por cualquiera de estos canales y te responderemos en minutos.</p>
+<!-- FOOTER / CONTACTO -->
+<footer class="footer" id="contacto">
+  <div class="footer-content">
+    <h3>Contacto y Soporte</h3>
+    <p>Atención personalizada para resolver cualquier duda.</p>
+    <div class="contact-buttons">
+      <a href="https://discord.gg/V6K4Z3Ghf" target="_blank" class="contact-btn">
+        <i class="fab fa-discord"></i> Discord
+      </a>
+      <a href="mailto:jersoncasanovas4@gmail.com" class="contact-btn">
+        <i class="fas fa-envelope"></i> Gmail
+      </a>
+    </div>
+    <div class="copyright">© 2025 Amethyst Hosting. Todos los derechos reservados.</div>
   </div>
-  <div class="contact-cards">
-    <a href="https://discord.gg/V6K4Z3Ghf" target="_blank" rel="noopener" class="contact-card discord">
-      <div class="contact-icon"><i class="fab fa-discord"></i></div>
-      <div class="contact-info">
-        <h3>Discord</h3>
-        <p>Únete y abre un ticket</p>
-      </div>
-    </a>
-    <a href="mailto:jersoncasanovas4@gmail.com" class="contact-card gmail">
-      <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-      <div class="contact-info">
-        <h3>Gmail del dueño</h3>
-        <p>jersoncasanovas4@gmail.com</p>
-      </div>
-    </a>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <span class="footer-logo">Amethyst Hosting</span>
-  <p>© 2025 Amethyst Hosting. Todos los derechos reservados. Powered by crystal energy ✦</p>
 </footer>
 
 <!-- ASISTENTE IA -->
 <div class="chat-widget">
   <div class="chat-panel" id="chatPanel">
     <div class="chat-header">
-      <div class="chat-avatar"><i class="fas fa-gem"></i></div>
-      <div class="chat-header-info">
-        <h4>Ametista · IA</h4>
-        <p>En línea · Responde al instante</p>
+      <div>
+        <h4>Asistente Amethyst</h4>
+        <span>En línea</span>
       </div>
       <button class="chat-close" id="chatClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="chat-messages" id="chatMessages">
-      <div class="message bot">¡Hola! Soy <strong>Ametista</strong>, tu asistente IA de Amethyst Hosting. ¿En qué puedo ayudarte hoy? Puedes preguntarme sobre compra, especificaciones, soporte y más ✦</div>
+      <div class="msg bot">Hola. Soy el asistente virtual de Amethyst Hosting. ¿En qué puedo ayudarte?</div>
     </div>
-    <div class="chat-quick" id="chatQuick">
-      <button class="quick-btn" data-q="comprar">¿Cómo compro?</button>
-      <button class="quick-btn" data-q="pago">Métodos de pago</button>
-      <button class="quick-btn" data-q="specs">Especificaciones</button>
-      <button class="quick-btn" data-q="ubicacion">Ubicación</button>
-      <button class="quick-btn" data-q="soporte">Soporte</button>
-    </div>
-    <div class="chat-input">
+    <div class="chat-input-area">
       <input type="text" id="chatInput" placeholder="Escribe tu mensaje...">
-      <button id="chatSend"><i class="fas fa-paper-plane"></i></button>
+      <button class="chat-send" id="chatSend"><i class="fas fa-paper-plane"></i></button>
     </div>
   </div>
-  <button class="chat-toggle" id="chatToggle" aria-label="Abrir asistente IA">
+  <button class="chat-toggle" id="chatToggle" aria-label="Abrir chat">
     <i class="fas fa-comment-dots"></i>
   </button>
 </div>
 
 <script>
-/* ===== GENERACIÓN DE CRISTALES CAYENDO ===== */
-const crystalsContainer = document.getElementById('crystals');
-for (let i = 0; i < 22; i++) {
-  const crystal = document.createElement('div');
-  crystal.className = 'crystal';
-  const size = Math.random() * 28 + 14;
-  crystal.style.left = Math.random() * 100 + '%';
-  crystal.style.width = size + 'px';
-  crystal.style.height = (size * 1.45) + 'px';
-  crystal.style.animationDuration = (Math.random() * 18 + 14) + 's';
-  crystal.style.animationDelay = Math.random() * -25 + 's';
-  crystal.style.setProperty('--max-opacity', Math.random() * 0.45 + 0.18);
-  
-  const shape = document.createElement('div');
-  shape.className = 'crystal-shape';
-  const hue = Math.random() * 35 + 265;
-  const sat = Math.random() * 25 + 60;
-  const light = Math.random() * 15 + 55;
-  shape.style.background = `linear-gradient(135deg, hsla(${hue}, ${sat}%, ${light}%, 0.55) 0%, hsla(${hue-15}, ${sat-10}%, ${light-15}%, 0.7) 50%, hsla(${hue+10}, ${sat-20}%, ${light-25}%, 0.4) 100%)`;
-  shape.style.boxShadow = `0 0 ${size/2}px hsla(${hue}, ${sat}%, ${light}%, 0.35)`;
-  
-  crystal.appendChild(shape);
-  crystalsContainer.appendChild(crystal);
+/* ===== FONDO DE PARTÍCULAS SUTIL ===== */
+const bg = document.getElementById('particlesBg');
+for (let i = 0; i < 40; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  const size = Math.random() * 2 + 1;
+  p.style.width = size + 'px';
+  p.style.height = size + 'px';
+  p.style.left = Math.random() * 100 + '%';
+  p.style.animationDuration = (Math.random() * 15 + 15) + 's';
+  p.style.animationDelay = Math.random() * 10 + 's';
+  bg.appendChild(p);
 }
+
+/* ===== MENÚ MÓVIL ===== */
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navMenu');
+menuToggle.addEventListener('click', () => navMenu.classList.toggle('mobile-open'));
+navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('mobile-open')));
 
 /* ===== SISTEMA DINÁMICO DE PLANES ===== */
 const plansData = {
   standard: {
     cpu: "Intel Core i7-6700K @4.0GHz",
-    ramType: "DDR4 @2400MHz",
-    location: "🇺🇸 Salt Lake, Utah",
-    threads: "8",
+    ramType: "DDR4 @2400MHz", threads: "8", location: "🇺🇸 Salt Lake, Utah",
     plans: [
-      { ram: "3 GB", disk: "20 GB", price: "5", name: "Shard", tag: "Para empezar" },
-      { ram: "5 GB", disk: "30 GB", price: "8", name: "Cluster", tag: "Comunidades pequeñas" },
-      { ram: "10 GB", disk: "40 GB", price: "12", name: "Geode", tag: "El más elegido", popular: true },
-      { ram: "15 GB", disk: "50 GB", price: "25", name: "Crown", tag: "Servidores grandes" },
-      { ram: "30 GB", disk: "60 GB", price: "30", name: "Sovereign", tag: "Máximo rendimiento" }
+      { ram: "3 GB", disk: "20 GB", price: "5", tier: "Essential" },
+      { ram: "5 GB", disk: "30 GB", price: "8", tier: "Basic" },
+      { ram: "10 GB", disk: "40 GB", price: "12", tier: "Standard" },
+      { ram: "15 GB", disk: "50 GB", price: "25", tier: "Pro" },
+      { ram: "30 GB", disk: "60 GB", price: "30", tier: "Ultimate" }
     ]
   },
   advanced: {
     cpu: "AMD Ryzen 7 5700G @4.7GHz",
-    ramType: "DDR4 @3200MHz",
-    location: "🇺🇸 Salt Lake, Utah",
-    threads: "8",
+    ramType: "DDR4 @3200MHz", threads: "8", location: "🇺🇸 Salt Lake, Utah",
     plans: [
-      { ram: "4 GB", disk: "25 GB", price: "6", name: "Shard+", tag: "Potencia Ryzen" },
-      { ram: "6 GB", disk: "35 GB", price: "10", name: "Cluster+", tag: "Más estabilidad" },
-      { ram: "12 GB", disk: "45 GB", price: "15", name: "Geode+", tag: "Ryzen popular", popular: true },
-      { ram: "18 GB", disk: "55 GB", price: "28", name: "Crown+", tag: "Alto rendimiento" },
-      { ram: "32 GB", disk: "70 GB", price: "38", name: "Sovereign+", tag: "Servidor masivo" }
+      { ram: "4 GB", disk: "25 GB", price: "6", tier: "Essential" },
+      { ram: "6 GB", disk: "35 GB", price: "10", tier: "Basic" },
+      { ram: "12 GB", disk: "45 GB", price: "15", tier: "Standard" },
+      { ram: "18 GB", disk: "55 GB", price: "28", tier: "Pro" },
+      { ram: "32 GB", disk: "70 GB", price: "38", tier: "Ultimate" }
     ]
   },
   performance: {
     cpu: "AMD Ryzen 9 5900X @4.8GHz",
-    ramType: "DDR4 @3200MHz",
-    location: "🇺🇸 Miami, Florida",
-    threads: "16",
+    ramType: "DDR4 @3200MHz", threads: "16", location: "🇺🇸 Miami, Florida",
     plans: [
-      { ram: "5 GB", disk: "30 GB", price: "8", name: "Perf Shard", tag: "Base rendimiento" },
-      { ram: "8 GB", disk: "40 GB", price: "14", name: "Perf Cluster", tag: "Fluidez extrema" },
-      { ram: "16 GB", disk: "50 GB", price: "22", name: "Perf Geode", tag: "Gamer pro", popular: true },
-      { ram: "24 GB", disk: "60 GB", price: "35", name: "Perf Crown", tag: "Servidor heavy" },
-      { ram: "48 GB", disk: "80 GB", price: "55", name: "Perf Sovereign", tag: "Máximo poder" }
+      { ram: "5 GB", disk: "30 GB", price: "8", tier: "Essential" },
+      { ram: "8 GB", disk: "40 GB", price: "14", tier: "Basic" },
+      { ram: "16 GB", disk: "50 GB", price: "22", tier: "Standard" },
+      { ram: "24 GB", disk: "60 GB", price: "35", tier: "Pro" },
+      { ram: "48 GB", disk: "80 GB", price: "55", tier: "Ultimate" }
     ]
   }
 };
@@ -596,35 +400,21 @@ function renderPlans(category) {
   
   data.plans.forEach(plan => {
     const card = document.createElement('div');
-    card.className = `plan-card ${plan.popular ? 'popular' : ''}`;
+    card.className = 'plan-card';
     card.innerHTML = `
-      <div class="plan-name">${plan.name}</div>
-      <div class="plan-tag">${plan.tag}</div>
-      <div class="plan-price">
-        <span class="currency">$</span><span class="amount">${plan.price}</span><span class="period">USD/mes</span>
-      </div>
+      <div class="plan-tier">${plan.tier}</div>
+      <div class="plan-price">$${plan.price}<span>/mes</span></div>
       <ul class="plan-specs">
-        <li><i class="fas fa-memory"></i> <strong>${plan.ram}</strong> RAM ${data.ramType}</li>
-        <li><i class="fas fa-hdd"></i> <strong>${plan.disk}</strong> NVMe SSD</li>
-        <li><i class="fas fa-microchip"></i> ${data.cpu}</li>
-        <li><i class="fas fa-layer-group"></i> <strong>${data.threads}</strong> Threads</li>
-        <li><i class="fas fa-globe-americas"></i> ${data.location}</li>
-        <li><i class="fas fa-network-wired"></i> 1 IPv4</li>
+        <li><i class="fas fa-check"></i> ${plan.ram} RAM ${data.ramType}</li>
+        <li><i class="fas fa-check"></i> ${plan.disk} NVMe SSD</li>
+        <li><i class="fas fa-check"></i> ${data.cpu}</li>
+        <li><i class="fas fa-check"></i> ${data.threads} Threads</li>
+        <li><i class="fas fa-check"></i> ${data.location}</li>
+        <li><i class="fas fa-check"></i> 1 IPv4</li>
       </ul>
-      <a href="#contacto" class="plan-button">Comprar ahora</a>
+      <a href="#contacto" class="plan-btn">Seleccionar plan</a>
     `;
     plansGrid.appendChild(card);
-  });
-  
-  // Reaplicar animación a las nuevas tarjetas
-  document.querySelectorAll('.plan-card').forEach(card => {
-    card.style.opacity = '0';
-    card.style.transform = 'translateY(30px)';
-    setTimeout(() => {
-      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease, border-color 0.4s ease, box-shadow 0.4s ease';
-      card.style.opacity = '1';
-      card.style.transform = 'translateY(0)';
-    }, 50);
   });
 }
 
@@ -636,116 +426,21 @@ catTabs.forEach(tab => {
   });
 });
 
-// Cargar planes iniciales
-renderPlans('standard');
+renderPlans('standard'); // Cargar por defecto
 
-
-/* ===== MOBILE MENU ===== */
-const menuToggle = document.getElementById('menuToggle');
-const navMenu = document.getElementById('navMenu');
-menuToggle.addEventListener('click', () => navMenu.classList.toggle('mobile-open'));
-navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('mobile-open')));
-
-
-/* ===== CHAT WIDGET ===== */
-const chatToggle = document.getElementById('chatToggle');
-const chatPanel = document.getElementById('chatPanel');
-const chatClose = document.getElementById('chatClose');
-const chatMessages = document.getElementById('chatMessages');
-const chatInput = document.getElementById('chatInput');
-const chatSend = document.getElementById('chatSend');
-const chatQuick = document.getElementById('chatQuick');
-
-const responses = {
-  comprar: 'Para comprar un plan, escríbenos por <a href="https://discord.gg/V6K4Z3Ghf" target="_blank">Discord</a> o a jersoncasanovas4@gmail.com. Te guiamos paso a paso y te activamos el servidor en minutos ✦',
-  pago: 'Aceptamos múltiples métodos de pago (PayPal, tarjetas, criptomonedas y transferencias). Contáctanos por <a href="https://discord.gg/V6K4Z3Ghf" target="_blank">Discord</a> para indicarte las opciones disponibles en tu región.',
-  specs: 'Tenemos 3 categorías: Standard (Intel Core i7), Advanced (Ryzen 7 5700G) y Performance (Ryzen 9 5900X con 16 threads). Todos con NVMe SSD y red optimizada.',
-  ubicacion: 'Nuestros servidores Standard y Advanced están en Salt Lake, Utah 🇺🇸. Los Performance están en Miami, Florida 🇺🇸.',
-  soporte: 'Nuestro soporte humano está disponible 24/7 por <a href="https://discord.gg/V6K4Z3Ghf" target="_blank">Discord</a> y Gmail. Tambien puedes abrir un ticket y te respondemos en minutos.',
-  hola: '¡Hola! Soy Ametista, tu asistente IA. Puedes preguntarme sobre compra, especificaciones, soporte, ubicación y más ✦',
-  gracias: '¡Gracias a ti por elegir Amethyst Hosting! Si tienes más preguntas, aquí estaré. Que disfrutes tu servidor 💎',
-  precio: 'Nuestros planes van desde $5 USD (Standard) hasta $55 USD (Performance máximo). Revisa la sección de planes para ver todos los detalles.',
-  ram: 'Ofrecemos desde 3GB hasta 48GB de RAM dependiendo de la categoría que elijas (Standard, Advanced o Performance).',
-  instalacion: 'La instalación es gratuita. Solo indícanos el juego, versión y mods/plugins que necesitas y lo configuramos por ti.'
-};
-
-function getResponse(text) {
-  text = text.toLowerCase().trim();
-  const keywords = {
-    comprar: ['comprar', 'compro', 'compra', 'adquirir', 'obtener', 'contratar', 'plan'],
-    pago: ['pago', 'pagar', 'paypal', 'tarjeta', 'cripto', 'transferencia', 'metodo'],
-    specs: ['spec', 'especificaciones', 'caracteristicas', 'tecnica', 'rendimiento', 'cpu', 'disco', 'ssd', 'ryzen', 'intel'],
-    ubicacion: ['ubicacion', 'donde', 'locacion', 'pais', 'server location', 'utah', 'salt lake', 'miami', 'florida'],
-    soporte: ['soporte', 'ayuda', 'problema', 'error', 'ticket', 'staff', 'contacto'],
-    hola: ['hola', 'hey', 'buenas', 'saludos', 'hi', 'holi'],
-    gracias: ['gracias', 'thanks', 'thank you', 'genial'],
-    precio: ['precio', 'costo', 'vale', 'cuesta', 'cuanto'],
-    ram: ['ram', 'memoria'],
-    instalacion: ['instalacion', 'instalar', 'setup', 'configurar', 'configuracion']
-  };
-  for (const key in keywords) {
-    if (keywords[key].some(kw => text.includes(kw))) return responses[key];
-  }
-  return 'No estoy segura de eso, pero nuestro equipo humano te puede ayudar perfectamente. Escríbenos por <a href="https://discord.gg/V6K4Z3Ghf" target="_blank">Discord</a> o a jersoncasanovas4@gmail.com ✦';
-}
-
-function addMessage(text, sender) {
-  const msg = document.createElement('div');
-  msg.className = `message ${sender}`;
-  msg.innerHTML = text;
-  chatMessages.appendChild(msg);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-function sendUserMessage(text) {
-  if (!text.trim()) return;
-  addMessage(text, 'user');
-  chatInput.value = '';
-  
-  const typing = document.createElement('div');
-  typing.className = 'message bot';
-  typing.innerHTML = '<i class="fas fa-ellipsis-h"></i> escribiendo...';
-  typing.style.opacity = '0.6';
-  chatMessages.appendChild(typing);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-  
-  setTimeout(() => {
-    typing.remove();
-    addMessage(getResponse(text), 'bot');
-  }, 700 + Math.random() * 600);
-}
-
-chatToggle.addEventListener('click', () => {
-  chatPanel.classList.toggle('open');
-  if (chatPanel.classList.contains('open')) setTimeout(() => chatInput.focus(), 100);
-});
-chatClose.addEventListener('click', () => chatPanel.classList.remove('open'));
-chatSend.addEventListener('click', () => sendUserMessage(chatInput.value));
-chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendUserMessage(chatInput.value); });
-chatQuick.querySelectorAll('.quick-btn').forEach(btn => {
-  btn.addEventListener('click', () => sendUserMessage(btn.textContent));
-});
-
-
-/* ===== SISTEMA DE RESEÑAS ANÓNIMAS (A PRUEBA DE FALLOS) ===== */
+/* ===== SISTEMA DE RESEÑAS ANÓNIMAS ===== */
 const reviewForm = document.getElementById('reviewForm');
 const reviewText = document.getElementById('reviewText');
 const reviewsList = document.getElementById('reviewsList');
 
 let memoryDB = []; 
 try {
-  const stored = localStorage.getItem('amethyst_anon_reviews');
+  const stored = localStorage.getItem('amethyst_reviews_min');
   if (stored) memoryDB = JSON.parse(stored);
-} catch (e) {
-  console.warn("LocalStorage bloqueado. Usando memoria temporal para reseñas.");
-}
+} catch (e) {}
 
 if (memoryDB.length === 0) {
-  memoryDB.push({
-    rating: 5,
-    text: "El mejor hosting que he probado. Cero lag y el soporte responde al instante.",
-    date: "Hace 3 días"
-  });
+  memoryDB.push({ rating: 5, text: "Servicio impecable, cero lag y soporte rápido.", date: "Hace 2 días" });
 }
 
 function escapeHTML(str) {
@@ -754,7 +449,7 @@ function escapeHTML(str) {
 
 function renderReviews() {
   if (memoryDB.length === 0) {
-    reviewsList.innerHTML = '<div class="no-reviews">Aún no hay reseñas. ¡Sé el primero en compartir tu experiencia anónima!</div>';
+    reviewsList.innerHTML = '<div class="no-reviews">Aún no hay reseñas. Sé el primero en opinar.</div>';
     return;
   }
   reviewsList.innerHTML = memoryDB.map(r => `
@@ -777,13 +472,12 @@ reviewForm.addEventListener('submit', (e) => {
   const ratingInput = document.querySelector('input[name="rating"]:checked');
   const text = reviewText.value.trim();
 
-  if (!ratingInput) { alert('Por favor, selecciona una puntuación con estrellas.'); return; }
+  if (!ratingInput) { alert('Por favor, selecciona una puntuación.'); return; }
   if (!text) { alert('Por favor, escribe tu reseña.'); return; }
 
-  const newReview = { rating: parseInt(ratingInput.value), text: text, date: "Justo ahora" };
-  memoryDB.unshift(newReview);
+  memoryDB.unshift({ rating: parseInt(ratingInput.value), text: text, date: "Justo ahora" });
   
-  try { localStorage.setItem('amethyst_anon_reviews', JSON.stringify(memoryDB)); } catch (e) {}
+  try { localStorage.setItem('amethyst_reviews_min', JSON.stringify(memoryDB)); } catch (e) {}
   
   reviewText.value = '';
   document.querySelectorAll('input[name="rating"]').forEach(r => r.checked = false);
@@ -792,24 +486,48 @@ reviewForm.addEventListener('submit', (e) => {
 
 renderReviews();
 
+/* ===== LÓGICA DEL ASISTENTE IA ===== */
+const chatToggle = document.getElementById('chatToggle');
+const chatPanel = document.getElementById('chatPanel');
+const chatClose = document.getElementById('chatClose');
+const chatMessages = document.getElementById('chatMessages');
+const chatInput = document.getElementById('chatInput');
+const chatSend = document.getElementById('chatSend');
 
-/* ===== SCROLL REVEAL ===== */
-const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.style.opacity = '1';
-      entry.target.style.transform = 'translateY(0)';
-    }
-  });
-}, observerOptions);
-
-document.querySelectorAll('.dedicated-card, .setup-card, .contact-card, .review-form-container').forEach(card => {
-  card.style.opacity = '0';
-  card.style.transform = 'translateY(30px)';
-  card.style.transition = 'opacity 0.6s ease, transform 0.6s ease, border-color 0.4s ease, box-shadow 0.4s ease';
-  observer.observe(card);
+chatToggle.addEventListener('click', () => {
+  chatPanel.classList.toggle('open');
+  if (chatPanel.classList.contains('open')) setTimeout(() => chatInput.focus(), 100);
 });
+chatClose.addEventListener('click', () => chatPanel.classList.remove('open'));
+
+function addMessage(text, sender) {
+  const div = document.createElement('div');
+  div.className = `msg ${sender}`;
+  div.textContent = text;
+  chatMessages.appendChild(div);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function processMessage(text) {
+  const lowerText = text.toLowerCase().trim();
+  if (lowerText.includes('cómo compro') || lowerText.includes('como compro') || lowerText.includes('comprar')) {
+    return "Para adquirir cualquier servicio, por favor contacta con nosotros vía Discord o Gmail para una atención personalizada.";
+  }
+  if (lowerText.includes('hola') || lowerText.includes('buenas')) return "Hola. ¿En qué puedo asistirte hoy?";
+  if (lowerText.includes('precio') || lowerText.includes('costo')) return "Nuestros planes inician desde $5 USD mensuales. Puedes revisar la sección de Servidores Normales para más detalles.";
+  return "Para consultas específicas, te recomiendo contactar directamente a nuestro equipo humano vía Discord o Gmail. Estarán encantados de ayudarte.";
+}
+
+function sendMessage() {
+  const text = chatInput.value.trim();
+  if (!text) return;
+  addMessage(text, 'user');
+  chatInput.value = '';
+  setTimeout(() => addMessage(processMessage(text), 'bot'), 600);
+}
+
+chatSend.addEventListener('click', sendMessage);
+chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
 </script>
 </body>
 </html>
