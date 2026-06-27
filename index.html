@@ -38,9 +38,7 @@ body {
 
 /* ===== FONDO ATMOSFÉRICO ===== */
 .bg-atmosphere {
-  position: fixed;
-  inset: 0;
-  z-index: -3;
+  position: fixed; inset: 0; z-index: -3;
   background:
     radial-gradient(ellipse at 20% 0%, rgba(123, 44, 191, 0.28), transparent 50%),
     radial-gradient(ellipse at 80% 100%, rgba(157, 78, 221, 0.22), transparent 50%),
@@ -49,9 +47,7 @@ body {
 }
 
 .bg-grid {
-  position: fixed;
-  inset: 0;
-  z-index: -2;
+  position: fixed; inset: 0; z-index: -2;
   background-image:
     linear-gradient(rgba(199, 125, 255, 0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(199, 125, 255, 0.04) 1px, transparent 1px);
@@ -60,29 +56,9 @@ body {
   -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
 }
 
-/* ===== CRISTALES CAYENDO ===== */
-.crystals-container {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.crystal {
-  position: absolute;
-  top: -120px;
-  opacity: 0;
-  animation: fall linear infinite;
-  will-change: transform, opacity;
-}
-
-.crystal-shape {
-  width: 100%;
-  height: 100%;
-  clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-  filter: blur(0.4px);
-}
+.crystals-container { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.crystal { position: absolute; top: -120px; opacity: 0; animation: fall linear infinite; will-change: transform, opacity; }
+.crystal-shape { width: 100%; height: 100%; clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); filter: blur(0.4px); }
 
 @keyframes fall {
   0% { transform: translateY(-120px) rotate(0deg); opacity: 0; }
@@ -93,1096 +69,186 @@ body {
 
 /* ===== NAVBAR ===== */
 .navbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  background: rgba(10, 2, 24, 0.7);
-  border-bottom: 1px solid var(--border-soft);
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);
+  background: rgba(10, 2, 24, 0.7); border-bottom: 1px solid var(--border-soft);
 }
-
-.nav-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 1rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 2rem;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: 1.4rem;
-  color: var(--text-primary);
-  text-decoration: none;
-}
-
-.logo-icon {
-  width: 36px;
-  height: 36px;
-  background: linear-gradient(135deg, var(--violet-2), var(--violet-3));
-  clip-path: polygon(50% 0%, 100% 35%, 85% 100%, 15% 100%, 0% 35%);
-  box-shadow: 0 0 20px rgba(199, 125, 255, 0.6);
-  position: relative;
-}
-
-.logo-icon::after {
-  content: '';
-  position: absolute;
-  inset: 4px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.45), transparent 60%);
-  clip-path: polygon(50% 0%, 100% 35%, 85% 100%, 15% 100%, 0% 35%);
-}
-
-.logo span.accent {
-  background: linear-gradient(135deg, var(--violet-glow), var(--violet-2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.nav-menu {
-  display: flex;
-  gap: 0.25rem;
-  list-style: none;
-}
-
-.nav-menu a {
-  color: var(--text-secondary);
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 0.92rem;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.nav-menu a:hover {
-  color: var(--text-primary);
-  background: rgba(199, 125, 255, 0.08);
-}
-
-.nav-cta {
-  background: linear-gradient(135deg, var(--violet-1), var(--violet-3));
-  color: white;
-  padding: 0.65rem 1.5rem;
-  border-radius: 10px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 20px rgba(157, 78, 221, 0.4);
-}
-
-.nav-cta:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(157, 78, 221, 0.6);
-}
-
+.nav-container { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+.logo { display: flex; align-items: center; gap: 0.75rem; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.4rem; color: var(--text-primary); text-decoration: none; }
+.logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--violet-2), var(--violet-3)); clip-path: polygon(50% 0%, 100% 35%, 85% 100%, 15% 100%, 0% 35%); box-shadow: 0 0 20px rgba(199, 125, 255, 0.6); position: relative; }
+.logo-icon::after { content: ''; position: absolute; inset: 4px; background: linear-gradient(135deg, rgba(255,255,255,0.45), transparent 60%); clip-path: polygon(50% 0%, 100% 35%, 85% 100%, 15% 100%, 0% 35%); }
+.logo span.accent { background: linear-gradient(135deg, var(--violet-glow), var(--violet-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.nav-menu { display: flex; gap: 0.25rem; list-style: none; }
+.nav-menu a { color: var(--text-secondary); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 500; font-size: 0.92rem; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.4rem; }
+.nav-menu a:hover { color: var(--text-primary); background: rgba(199, 125, 255, 0.08); }
+.nav-cta { background: linear-gradient(135deg, var(--violet-1), var(--violet-3)); color: white; padding: 0.65rem 1.5rem; border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(157, 78, 221, 0.4); }
+.nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(157, 78, 221, 0.6); }
 .menu-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.3rem; cursor: pointer; }
 
 /* ===== HERO ===== */
-.hero {
-  position: relative;
-  padding: 5rem 2rem 3rem;
-  text-align: center;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 1rem;
-  border-radius: 100px;
-  background: rgba(199, 125, 255, 0.1);
-  border: 1px solid var(--border-soft);
-  font-size: 0.82rem;
-  color: var(--violet-2);
-  margin-bottom: 1.75rem;
-  font-weight: 500;
-}
-
-.hero-badge::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  background: var(--violet-2);
-  border-radius: 50%;
-  box-shadow: 0 0 10px var(--violet-2);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(1.3); }
-}
-
-.hero h1 {
-  font-family: 'Syne', sans-serif;
-  font-weight: 800;
-  font-size: clamp(2.5rem, 6vw, 4.75rem);
-  line-height: 1.05;
-  margin-bottom: 1.25rem;
-  letter-spacing: -0.02em;
-}
-
-.hero h1 .gradient {
-  background: linear-gradient(135deg, var(--violet-glow) 0%, var(--violet-2) 50%, var(--pink-accent) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.hero p {
-  font-size: 1.1rem;
-  color: var(--text-secondary);
-  max-width: 640px;
-  margin: 0 auto;
-  line-height: 1.65;
-}
-
-/* ===== TABS ===== */
-.tabs {
-  display: flex;
-  justify-content: center;
-  gap: 0.5rem;
-  margin: 3rem auto 0;
-  flex-wrap: wrap;
-  padding: 0 1rem;
-}
-
-.tab {
-  background: rgba(28, 10, 54, 0.4);
-  border: 1px solid var(--border-soft);
-  color: var(--text-secondary);
-  padding: 0.7rem 1.4rem;
-  border-radius: 12px;
-  cursor: pointer;
-  font-family: inherit;
-  font-weight: 500;
-  font-size: 0.92rem;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  backdrop-filter: blur(10px);
-}
-
-.tab:hover {
-  border-color: var(--border-glow);
-  color: var(--text-primary);
-}
-
-.tab.active {
-  background: linear-gradient(135deg, rgba(157, 78, 221, 0.3), rgba(123, 44, 191, 0.2));
-  border-color: var(--violet-2);
-  color: var(--text-primary);
-  box-shadow: 0 0 25px rgba(157, 78, 221, 0.3);
-}
-
-.tab-label-soon {
-  background: rgba(255, 91, 209, 0.18);
-  color: var(--pink-accent);
-  padding: 0.15rem 0.5rem;
-  border-radius: 6px;
-  font-size: 0.65rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
+.hero { position: relative; padding: 5rem 2rem 3rem; text-align: center; max-width: 1400px; margin: 0 auto; }
+.hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; border-radius: 100px; background: rgba(199, 125, 255, 0.1); border: 1px solid var(--border-soft); font-size: 0.82rem; color: var(--violet-2); margin-bottom: 1.75rem; font-weight: 500; }
+.hero-badge::before { content: ''; width: 8px; height: 8px; background: var(--violet-2); border-radius: 50%; box-shadow: 0 0 10px var(--violet-2); animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.3); } }
+.hero h1 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.5rem, 6vw, 4.75rem); line-height: 1.05; margin-bottom: 1.25rem; letter-spacing: -0.02em; }
+.hero h1 .gradient { background: linear-gradient(135deg, var(--violet-glow) 0%, var(--violet-2) 50%, var(--pink-accent) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 640px; margin: 0 auto; line-height: 1.65; }
 
 /* ===== SECTION TITLE ===== */
-.section-title {
-  text-align: center;
-  margin-bottom: 3rem;
-  padding: 0 1rem;
-}
+.section-title { text-align: center; margin-bottom: 3rem; padding: 0 1rem; }
+.section-title h2 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: clamp(2rem, 4vw, 2.75rem); margin-bottom: 0.6rem; letter-spacing: -0.02em; }
+.section-title p { color: var(--text-secondary); font-size: 1.02rem; max-width: 580px; margin: 0 auto; }
 
-.section-title h2 {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  margin-bottom: 0.6rem;
-  letter-spacing: -0.02em;
-}
+/* ===== PLANES Y CATEGORÍAS ===== */
+.plans-section { max-width: 1400px; margin: 0 auto; padding: 4rem 2rem 2rem; }
 
-.section-title p {
-  color: var(--text-secondary);
-  font-size: 1.02rem;
-  max-width: 580px;
-  margin: 0 auto;
+.category-tabs {
+  display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 3rem; flex-wrap: wrap;
 }
+.cat-tab {
+  background: rgba(28, 10, 54, 0.4); border: 1px solid var(--border-soft); color: var(--text-secondary);
+  padding: 0.8rem 1.8rem; border-radius: 12px; cursor: pointer; font-family: inherit; font-weight: 600;
+  font-size: 0.95rem; transition: all 0.3s ease; backdrop-filter: blur(10px);
+  display: flex; flex-direction: column; align-items: center; gap: 0.2rem; min-width: 150px;
+}
+.cat-tab span { font-size: 0.7rem; font-weight: 400; color: var(--text-muted); }
+.cat-tab:hover { border-color: var(--border-glow); color: var(--text-primary); }
+.cat-tab.active {
+  background: linear-gradient(135deg, rgba(157, 78, 221, 0.3), rgba(123, 44, 191, 0.2));
+  border-color: var(--violet-2); color: var(--text-primary); box-shadow: 0 0 25px rgba(157, 78, 221, 0.3);
+}
+.cat-tab.active span { color: var(--violet-glow); }
 
-/* ===== PLANES ===== */
-.plans-section {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 4rem 2rem 2rem;
-}
-
-.plans-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(255px, 1fr));
-  gap: 1.5rem;
-}
+.plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(255px, 1fr)); gap: 1.5rem; }
 
 .plan-card {
-  position: relative;
-  background: var(--bg-card);
-  border: 1px solid var(--border-soft);
-  border-radius: 20px;
-  padding: 1.85rem 1.5rem;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+  position: relative; background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 20px;
+  padding: 1.85rem 1.5rem; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); overflow: hidden; display: flex; flex-direction: column;
 }
-
-.plan-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, transparent 0%, rgba(199, 125, 255, 0.1) 50%, transparent 100%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
-
-.plan-card:hover {
-  transform: translateY(-8px);
-  border-color: var(--violet-2);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(157, 78, 221, 0.3);
-}
-
+.plan-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, transparent 0%, rgba(199, 125, 255, 0.1) 50%, transparent 100%); opacity: 0; transition: opacity 0.4s ease; pointer-events: none; }
+.plan-card:hover { transform: translateY(-8px); border-color: var(--violet-2); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(157, 78, 221, 0.3); }
 .plan-card:hover::before { opacity: 1; }
+.plan-card.popular { border-color: var(--violet-2); background: linear-gradient(180deg, rgba(157, 78, 221, 0.14), rgba(28, 10, 54, 0.55)); box-shadow: 0 0 40px rgba(157, 78, 221, 0.22); }
+.plan-card.popular::after { content: 'POPULAR'; position: absolute; top: 1.1rem; right: 1.1rem; background: linear-gradient(135deg, var(--violet-2), var(--pink-accent)); color: white; padding: 0.25rem 0.7rem; border-radius: 100px; font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; box-shadow: 0 4px 15px rgba(199, 125, 255, 0.4); }
 
-.plan-card.popular {
-  border-color: var(--violet-2);
-  background: linear-gradient(180deg, rgba(157, 78, 221, 0.14), rgba(28, 10, 54, 0.55));
-  box-shadow: 0 0 40px rgba(157, 78, 221, 0.22);
-}
+.plan-name { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.2rem; }
+.plan-tag { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1.4rem; }
+.plan-price { margin-bottom: 1.4rem; display: flex; align-items: baseline; gap: 0.2rem; }
+.plan-price .currency { font-size: 1.1rem; color: var(--violet-2); font-weight: 600; }
+.plan-price .amount { font-family: 'Syne', sans-serif; font-size: 2.85rem; font-weight: 800; background: linear-gradient(135deg, var(--violet-glow), var(--violet-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; line-height: 1; }
+.plan-price .period { font-size: 0.85rem; color: var(--text-muted); margin-left: 0.25rem; }
 
-.plan-card.popular::after {
-  content: 'POPULAR';
-  position: absolute;
-  top: 1.1rem;
-  right: 1.1rem;
-  background: linear-gradient(135deg, var(--violet-2), var(--pink-accent));
-  color: white;
-  padding: 0.25rem 0.7rem;
-  border-radius: 100px;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  box-shadow: 0 4px 15px rgba(199, 125, 255, 0.4);
-}
-
-.plan-name {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 0.2rem;
-}
-
-.plan-tag {
-  font-size: 0.78rem;
-  color: var(--text-muted);
-  margin-bottom: 1.4rem;
-}
-
-.plan-price {
-  margin-bottom: 1.4rem;
-  display: flex;
-  align-items: baseline;
-  gap: 0.2rem;
-}
-
-.plan-price .currency {
-  font-size: 1.1rem;
-  color: var(--violet-2);
-  font-weight: 600;
-}
-
-.plan-price .amount {
-  font-family: 'Syne', sans-serif;
-  font-size: 2.85rem;
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--violet-glow), var(--violet-2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1;
-}
-
-.plan-price .period {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-left: 0.25rem;
-}
-
-.plan-specs {
-  list-style: none;
-  margin-bottom: 1.5rem;
-  flex: 1;
-}
-
-.plan-specs li {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.55rem 0;
-  border-bottom: 1px solid rgba(199, 125, 255, 0.08);
-  font-size: 0.86rem;
-  color: var(--text-secondary);
-}
-
+.plan-specs { list-style: none; margin-bottom: 1.5rem; flex: 1; }
+.plan-specs li { display: flex; align-items: center; gap: 0.75rem; padding: 0.55rem 0; border-bottom: 1px solid rgba(199, 125, 255, 0.08); font-size: 0.86rem; color: var(--text-secondary); }
 .plan-specs li:last-child { border-bottom: none; }
+.plan-specs li i { color: var(--violet-2); width: 18px; font-size: 0.85rem; text-align: center; }
+.plan-specs li strong { color: var(--text-primary); font-weight: 600; }
 
-.plan-specs li i {
-  color: var(--violet-2);
-  width: 18px;
-  font-size: 0.85rem;
-  text-align: center;
-}
-
-.plan-specs li strong {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-.plan-button {
-  display: block;
-  width: 100%;
-  background: linear-gradient(135deg, var(--violet-1), var(--violet-3));
-  color: white;
-  text-align: center;
-  padding: 0.85rem;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.92rem;
-  transition: all 0.3s ease;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  box-shadow: 0 4px 20px rgba(157, 78, 221, 0.3);
-}
-
-.plan-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(157, 78, 221, 0.55);
-}
+.plan-button { display: block; width: 100%; background: linear-gradient(135deg, var(--violet-1), var(--violet-3)); color: white; text-align: center; padding: 0.85rem; border-radius: 12px; text-decoration: none; font-weight: 600; font-size: 0.92rem; transition: all 0.3s ease; border: none; cursor: pointer; font-family: inherit; box-shadow: 0 4px 20px rgba(157, 78, 221, 0.3); }
+.plan-button:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(157, 78, 221, 0.55); }
 
 /* ===== DEDICADOS ===== */
-.dedicated-section {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 3rem 2rem;
-}
-
-.dedicated-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 1.5rem;
-}
-
-.dedicated-card {
-  position: relative;
-  background: var(--bg-card);
-  border: 1px solid var(--border-soft);
-  border-radius: 20px;
-  padding: 2rem;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  overflow: hidden;
-  opacity: 0.65;
-  filter: saturate(0.65);
-}
-
-.dedicated-card::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(10, 2, 24, 0.35);
-  z-index: 1;
-}
-
+.dedicated-section { max-width: 1400px; margin: 0 auto; padding: 3rem 2rem; }
+.dedicated-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+.dedicated-card { position: relative; background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 20px; padding: 2rem; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); overflow: hidden; opacity: 0.65; filter: saturate(0.65); }
+.dedicated-card::before { content: ''; position: absolute; inset: 0; background: rgba(10, 2, 24, 0.35); z-index: 1; }
 .dedicated-card > * { position: relative; z-index: 2; }
-
-.dedicated-lock {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  z-index: 3;
-  width: 46px;
-  height: 46px;
-  background: rgba(255, 91, 209, 0.12);
-  border: 1px solid rgba(255, 91, 209, 0.4);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--pink-accent);
-  font-size: 1.1rem;
-}
-
-.dedicated-soon-badge {
-  display: inline-block;
-  background: rgba(255, 91, 209, 0.15);
-  color: var(--pink-accent);
-  padding: 0.3rem 0.85rem;
-  border-radius: 100px;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  margin-bottom: 1rem;
-  border: 1px solid rgba(255, 91, 209, 0.3);
-  text-transform: uppercase;
-}
-
-.dedicated-card h3 {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 0.25rem;
-}
-
-.dedicated-card .sub {
-  font-size: 0.82rem;
-  color: var(--text-muted);
-  margin-bottom: 1.4rem;
-}
-
+.dedicated-lock { position: absolute; top: 1.5rem; right: 1.5rem; z-index: 3; width: 46px; height: 46px; background: rgba(255, 91, 209, 0.12); border: 1px solid rgba(255, 91, 209, 0.4); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--pink-accent); font-size: 1.1rem; }
+.dedicated-soon-badge { display: inline-block; background: rgba(255, 91, 209, 0.15); color: var(--pink-accent); padding: 0.3rem 0.85rem; border-radius: 100px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em; margin-bottom: 1rem; border: 1px solid rgba(255, 91, 209, 0.3); text-transform: uppercase; }
+.dedicated-card h3 { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.25rem; }
+.dedicated-card .sub { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1.4rem; }
 .dedicated-specs { list-style: none; }
-
-.dedicated-specs li {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.55rem 0;
-  font-size: 0.88rem;
-  color: var(--text-secondary);
-  border-bottom: 1px solid rgba(199, 125, 255, 0.08);
-}
-
-.dedicated-specs li i {
-  color: var(--violet-2);
-  width: 18px;
-  text-align: center;
-}
-
+.dedicated-specs li { display: flex; align-items: center; gap: 0.75rem; padding: 0.55rem 0; font-size: 0.88rem; color: var(--text-secondary); border-bottom: 1px solid rgba(199, 125, 255, 0.08); }
+.dedicated-specs li i { color: var(--violet-2); width: 18px; text-align: center; }
 .dedicated-specs li:last-child { border-bottom: none; }
-
-.dedicated-notify {
-  margin-top: 1.5rem;
-  width: 100%;
-  background: rgba(255, 91, 209, 0.1);
-  border: 1px solid rgba(255, 91, 209, 0.3);
-  color: var(--pink-accent);
-  text-align: center;
-  padding: 0.7rem;
-  border-radius: 10px;
-  font-weight: 500;
-  font-size: 0.85rem;
-  cursor: not-allowed;
-}
+.dedicated-notify { margin-top: 1.5rem; width: 100%; background: rgba(255, 91, 209, 0.1); border: 1px solid rgba(255, 91, 209, 0.3); color: var(--pink-accent); text-align: center; padding: 0.7rem; border-radius: 10px; font-weight: 500; font-size: 0.85rem; cursor: not-allowed; }
 
 /* ===== SETUPS ===== */
-.setup-section {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 3rem 2rem;
-}
-
-.setup-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-.setup-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-soft);
-  border-radius: 20px;
-  padding: 1.85rem;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  transition: all 0.4s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.setup-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--violet-2);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(157, 78, 221, 0.22);
-}
-
-.setup-icon {
-  width: 54px;
-  height: 54px;
-  background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(123, 44, 191, 0.1));
-  border: 1px solid var(--border-soft);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.3rem;
-  color: var(--violet-2);
-  margin-bottom: 1.15rem;
-}
-
-.setup-card h3 {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 0.6rem;
-}
-
-.setup-card p {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  line-height: 1.6;
-  margin-bottom: 1.1rem;
-}
-
-.setup-steps {
-  list-style: none;
-  counter-reset: step;
-}
-
-.setup-steps li {
-  counter-increment: step;
-  padding: 0.35rem 0;
-  color: var(--text-muted);
-  font-size: 0.83rem;
-  display: flex;
-  align-items: center;
-  gap: 0.55rem;
-}
-
-.setup-steps li::before {
-  content: counter(step);
-  width: 22px;
-  height: 22px;
-  background: rgba(199, 125, 255, 0.1);
-  border: 1px solid var(--border-soft);
-  color: var(--violet-2);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.72rem;
-  font-weight: 700;
-  flex-shrink: 0;
-}
+.setup-section { max-width: 1400px; margin: 0 auto; padding: 3rem 2rem; }
+.setup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.setup-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 20px; padding: 1.85rem; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: all 0.4s ease; position: relative; overflow: hidden; }
+.setup-card:hover { transform: translateY(-5px); border-color: var(--violet-2); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(157, 78, 221, 0.22); }
+.setup-icon { width: 54px; height: 54px; background: linear-gradient(135deg, rgba(157, 78, 221, 0.2), rgba(123, 44, 191, 0.1)); border: 1px solid var(--border-soft); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; color: var(--violet-2); margin-bottom: 1.15rem; }
+.setup-card h3 { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.6rem; }
+.setup-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.1rem; }
+.setup-steps { list-style: none; counter-reset: step; }
+.setup-steps li { counter-increment: step; padding: 0.35rem 0; color: var(--text-muted); font-size: 0.83rem; display: flex; align-items: center; gap: 0.55rem; }
+.setup-steps li::before { content: counter(step); width: 22px; height: 22px; background: rgba(199, 125, 255, 0.1); border: 1px solid var(--border-soft); color: var(--violet-2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.72rem; font-weight: 700; flex-shrink: 0; }
 
 /* ===== RESEÑAS ===== */
-.reviews-section {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
-}
-
-.review-form-container {
-  background: var(--bg-card);
-  border: 1px solid var(--border-soft);
-  border-radius: 20px;
-  padding: 2rem;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  margin-bottom: 2.5rem;
-}
-
-.review-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-}
-
-.star-rating {
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: flex-end;
-  gap: 0.2rem;
-}
-
-.star-rating input[type="radio"] {
-  display: none;
-}
-
-.star-rating label {
-  font-size: 1.8rem;
-  color: var(--text-muted);
-  cursor: pointer;
-  transition: color 0.2s;
-}
-
-.star-rating input[type="radio"]:checked ~ label,
-.star-rating label:hover,
-.star-rating label:hover ~ label {
-  color: #FFC107;
-}
-
-.review-textarea {
-  width: 100%;
-  background: rgba(199, 125, 255, 0.05);
-  border: 1px solid var(--border-soft);
-  color: var(--text-primary);
-  padding: 0.85rem 1rem;
-  border-radius: 12px;
-  font-family: inherit;
-  font-size: 0.92rem;
-  outline: none;
-  resize: vertical;
-  min-height: 100px;
-  transition: border-color 0.3s;
-}
-
+.reviews-section { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; }
+.review-form-container { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 20px; padding: 2rem; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); margin-bottom: 2.5rem; }
+.review-form { display: flex; flex-direction: column; gap: 1.2rem; }
+.star-rating { display: flex; flex-direction: row-reverse; justify-content: flex-end; gap: 0.2rem; }
+.star-rating input[type="radio"] { display: none; }
+.star-rating label { font-size: 1.8rem; color: var(--text-muted); cursor: pointer; transition: color 0.2s; }
+.star-rating input[type="radio"]:checked ~ label, .star-rating label:hover, .star-rating label:hover ~ label { color: #FFC107; }
+.review-textarea { width: 100%; background: rgba(199, 125, 255, 0.05); border: 1px solid var(--border-soft); color: var(--text-primary); padding: 0.85rem 1rem; border-radius: 12px; font-family: inherit; font-size: 0.92rem; outline: none; resize: vertical; min-height: 100px; transition: border-color 0.3s; }
 .review-textarea:focus { border-color: var(--violet-2); }
 .review-textarea::placeholder { color: var(--text-muted); }
-
-.submit-review-btn {
-  align-self: flex-end;
-  background: linear-gradient(135deg, var(--violet-1), var(--violet-3));
-  color: white;
-  border: none;
-  padding: 0.7rem 1.6rem;
-  border-radius: 10px;
-  font-family: inherit;
-  font-weight: 600;
-  font-size: 0.9rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.submit-review-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(157, 78, 221, 0.4);
-}
-
-.reviews-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-
-.review-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-soft);
-  border-radius: 18px;
-  padding: 1.5rem;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  animation: msgIn 0.4s ease;
-}
-
-.review-card-header {
-  display: flex;
-  align-items: center;
-  gap: 0.85rem;
-  margin-bottom: 1rem;
-}
-
-.anonymous-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(199, 125, 255, 0.1);
-  border: 2px solid var(--border-glow);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--violet-2);
-  font-size: 1.1rem;
-}
-
-.review-card-meta h4 {
-  font-family: 'Syne', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.review-card-meta .date {
-  font-size: 0.75rem;
-  color: var(--text-muted);
-}
-
-.review-card-stars {
-  margin-left: auto;
-  color: #FFC107;
-  font-size: 0.85rem;
-  display: flex;
-  gap: 0.15rem;
-}
-
-.review-card-text {
-  color: var(--text-secondary);
-  font-size: 0.92rem;
-  line-height: 1.6;
-}
-
-.no-reviews {
-  text-align: center;
-  color: var(--text-muted);
-  padding: 2rem;
-  border: 1px dashed var(--border-soft);
-  border-radius: 16px;
-}
+.submit-review-btn { align-self: flex-end; background: linear-gradient(135deg, var(--violet-1), var(--violet-3)); color: white; border: none; padding: 0.7rem 1.6rem; border-radius: 10px; font-family: inherit; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; gap: 0.5rem; }
+.submit-review-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(157, 78, 221, 0.4); }
+.reviews-list { display: flex; flex-direction: column; gap: 1.25rem; }
+.review-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 18px; padding: 1.5rem; backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); animation: msgIn 0.4s ease; }
+.review-card-header { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1rem; }
+.anonymous-icon { width: 44px; height: 44px; border-radius: 50%; background: rgba(199, 125, 255, 0.1); border: 2px solid var(--border-glow); display: flex; align-items: center; justify-content: center; color: var(--violet-2); font-size: 1.1rem; }
+.review-card-meta h4 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; }
+.review-card-meta .date { font-size: 0.75rem; color: var(--text-muted); }
+.review-card-stars { margin-left: auto; color: #FFC107; font-size: 0.85rem; display: flex; gap: 0.15rem; }
+.review-card-text { color: var(--text-secondary); font-size: 0.92rem; line-height: 1.6; }
+.no-reviews { text-align: center; color: var(--text-muted); padding: 2rem; border: 1px dashed var(--border-soft); border-radius: 16px; }
 
 /* ===== CONTACTO ===== */
-.contact-section {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
-.contact-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 3rem;
-}
-
-.contact-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-soft);
-  border-radius: 20px;
-  padding: 1.85rem;
-  text-decoration: none;
-  color: var(--text-primary);
-  transition: all 0.4s ease;
-  backdrop-filter: blur(20px);
-  display: flex;
-  align-items: center;
-  gap: 1.15rem;
-  text-align: left;
-}
-
-.contact-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--violet-2);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(157, 78, 221, 0.25);
-}
-
-.contact-card.discord:hover {
-  border-color: #7c84ff;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(124, 132, 255, 0.35);
-}
-
+.contact-section { max-width: 900px; margin: 0 auto; padding: 4rem 2rem; text-align: center; }
+.contact-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
+.contact-card { background: var(--bg-card); border: 1px solid var(--border-soft); border-radius: 20px; padding: 1.85rem; text-decoration: none; color: var(--text-primary); transition: all 0.4s ease; backdrop-filter: blur(20px); display: flex; align-items: center; gap: 1.15rem; text-align: left; }
+.contact-card:hover { transform: translateY(-5px); border-color: var(--violet-2); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(157, 78, 221, 0.25); }
+.contact-card.discord:hover { border-color: #7c84ff; box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(124, 132, 255, 0.35); }
 .contact-card.gmail:hover { border-color: #ff7060; }
-
-.contact-icon {
-  width: 54px;
-  height: 54px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.4rem;
-  flex-shrink: 0;
-}
-
-.contact-card.discord .contact-icon {
-  background: linear-gradient(135deg, rgba(88, 101, 242, 0.25), rgba(157, 78, 221, 0.2));
-  border: 1px solid rgba(124, 132, 255, 0.3);
-  color: #aab4ff;
-}
-
-.contact-card.gmail .contact-icon {
-  background: linear-gradient(135deg, rgba(234, 67, 53, 0.18), rgba(251, 188, 4, 0.15));
-  border: 1px solid rgba(234, 67, 53, 0.3);
-  color: #ffad9e;
-}
-
-.contact-info h3 {
-  font-family: 'Syne', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 0.2rem;
-}
-
-.contact-info p {
-  color: var(--text-secondary);
-  font-size: 0.88rem;
-  word-break: break-all;
-}
+.contact-icon { width: 54px; height: 54px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+.contact-card.discord .contact-icon { background: linear-gradient(135deg, rgba(88, 101, 242, 0.25), rgba(157, 78, 221, 0.2)); border: 1px solid rgba(124, 132, 255, 0.3); color: #aab4ff; }
+.contact-card.gmail .contact-icon { background: linear-gradient(135deg, rgba(234, 67, 53, 0.18), rgba(251, 188, 4, 0.15)); border: 1px solid rgba(234, 67, 53, 0.3); color: #ffad9e; }
+.contact-info h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.2rem; }
+.contact-info p { color: var(--text-secondary); font-size: 0.88rem; word-break: break-all; }
 
 /* ===== FOOTER ===== */
-.footer {
-  border-top: 1px solid var(--border-soft);
-  padding: 2rem;
-  text-align: center;
-  color: var(--text-muted);
-  font-size: 0.85rem;
-  background: rgba(10, 2, 24, 0.5);
-}
-
-.footer .footer-logo {
-  font-family: 'Syne', sans-serif;
-  font-weight: 700;
-  color: var(--violet-2);
-  margin-bottom: 0.4rem;
-  display: block;
-}
+.footer { border-top: 1px solid var(--border-soft); padding: 2rem; text-align: center; color: var(--text-muted); font-size: 0.85rem; background: rgba(10, 2, 24, 0.5); }
+.footer .footer-logo { font-family: 'Syne', sans-serif; font-weight: 700; color: var(--violet-2); margin-bottom: 0.4rem; display: block; }
 
 /* ===== CHAT WIDGET IA ===== */
-.chat-widget {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 1000;
-}
-
-.chat-toggle {
-  width: 62px;
-  height: 62px;
-  background: linear-gradient(135deg, var(--violet-1), var(--violet-3));
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  color: white;
-  font-size: 1.4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 30px rgba(157, 78, 221, 0.55);
-  transition: all 0.3s ease;
-  position: relative;
-}
-
+.chat-widget { position: fixed; bottom: 24px; right: 24px; z-index: 1000; }
+.chat-toggle { width: 62px; height: 62px; background: linear-gradient(135deg, var(--violet-1), var(--violet-3)); border: none; border-radius: 50%; cursor: pointer; color: white; font-size: 1.4rem; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 30px rgba(157, 78, 221, 0.55); transition: all 0.3s ease; position: relative; }
 .chat-toggle:hover { transform: scale(1.06); }
-
-.chat-toggle::before {
-  content: '';
-  position: absolute;
-  inset: -4px;
-  border-radius: 50%;
-  border: 2px solid var(--violet-2);
-  opacity: 0.5;
-  animation: ringPulse 2s infinite;
-}
-
-@keyframes ringPulse {
-  0% { transform: scale(1); opacity: 0.6; }
-  100% { transform: scale(1.4); opacity: 0; }
-}
-
-.chat-panel {
-  position: absolute;
-  bottom: 80px;
-  right: 0;
-  width: 360px;
-  max-width: calc(100vw - 48px);
-  height: 500px;
-  max-height: calc(100vh - 120px);
-  background: rgba(15, 5, 30, 0.95);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(30px);
-  border: 1px solid var(--border-glow);
-  border-radius: 20px;
-  display: none;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(157, 78, 221, 0.22);
-}
-
-.chat-panel.open {
-  display: flex;
-  animation: slideUp 0.3s ease;
-}
-
-@keyframes slideUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.chat-header {
-  background: linear-gradient(135deg, var(--violet-3), var(--violet-1));
-  padding: 1rem 1.2rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.chat-avatar {
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.18);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  position: relative;
-}
-
-.chat-avatar::after {
-  content: '';
-  position: absolute;
-  bottom: 1px;
-  right: 1px;
-  width: 11px;
-  height: 11px;
-  background: #4ade80;
-  border-radius: 50%;
-  border: 2px solid var(--violet-3);
-}
-
-.chat-header-info h4 {
-  font-family: 'Syne', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.chat-header-info p {
-  font-size: 0.74rem;
-  opacity: 0.85;
-}
-
-.chat-close {
-  margin-left: auto;
-  background: rgba(255, 255, 255, 0.18);
-  border: none;
-  color: white;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
+.chat-toggle::before { content: ''; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--violet-2); opacity: 0.5; animation: ringPulse 2s infinite; }
+@keyframes ringPulse { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(1.4); opacity: 0; } }
+.chat-panel { position: absolute; bottom: 80px; right: 0; width: 360px; max-width: calc(100vw - 48px); height: 500px; max-height: calc(100vh - 120px); background: rgba(15, 5, 30, 0.95); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px); border: 1px solid var(--border-glow); border-radius: 20px; display: none; flex-direction: column; overflow: hidden; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(157, 78, 221, 0.22); }
+.chat-panel.open { display: flex; animation: slideUp 0.3s ease; }
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.chat-header { background: linear-gradient(135deg, var(--violet-3), var(--violet-1)); padding: 1rem 1.2rem; display: flex; align-items: center; gap: 0.75rem; }
+.chat-avatar { width: 40px; height: 40px; background: rgba(255, 255, 255, 0.18); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; position: relative; }
+.chat-avatar::after { content: ''; position: absolute; bottom: 1px; right: 1px; width: 11px; height: 11px; background: #4ade80; border-radius: 50%; border: 2px solid var(--violet-3); }
+.chat-header-info h4 { font-family: 'Syne', sans-serif; font-size: 1rem; font-weight: 700; }
+.chat-header-info p { font-size: 0.74rem; opacity: 0.85; }
+.chat-close { margin-left: auto; background: rgba(255, 255, 255, 0.18); border: none; color: white; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; transition: background 0.2s; display: flex; align-items: center; justify-content: center; }
 .chat-close:hover { background: rgba(255, 255, 255, 0.3); }
-
-.chat-messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-}
-
+.chat-messages { flex: 1; overflow-y: auto; padding: 1.2rem; display: flex; flex-direction: column; gap: 0.7rem; }
 .chat-messages::-webkit-scrollbar { width: 6px; }
 .chat-messages::-webkit-scrollbar-track { background: transparent; }
 .chat-messages::-webkit-scrollbar-thumb { background: rgba(199, 125, 255, 0.3); border-radius: 10px; }
-
-.message {
-  max-width: 85%;
-  padding: 0.65rem 0.95rem;
-  border-radius: 14px;
-  font-size: 0.85rem;
-  line-height: 1.5;
-  animation: msgIn 0.3s ease;
-}
-
-@keyframes msgIn {
-  from { transform: translateY(8px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-.message.bot {
-  background: rgba(199, 125, 255, 0.12);
-  border: 1px solid var(--border-soft);
-  border-bottom-left-radius: 4px;
-  align-self: flex-start;
-  color: var(--text-primary);
-}
-
-.message.user {
-  background: linear-gradient(135deg, var(--violet-1), var(--violet-3));
-  color: white;
-  border-bottom-right-radius: 4px;
-  align-self: flex-end;
-}
-
-.message.bot a {
-  color: var(--violet-2);
-  text-decoration: underline;
-  word-break: break-all;
-}
-
-.chat-quick {
-  padding: 0 1.2rem 0.7rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-}
-
-.quick-btn {
-  background: rgba(199, 125, 255, 0.08);
-  border: 1px solid var(--border-soft);
-  color: var(--violet-2);
-  padding: 0.38rem 0.75rem;
-  border-radius: 100px;
-  font-size: 0.74rem;
-  cursor: pointer;
-  font-family: inherit;
-  transition: all 0.2s;
-}
-
-.quick-btn:hover {
-  background: rgba(199, 125, 255, 0.18);
-  border-color: var(--violet-2);
-}
-
-.chat-input {
-  padding: 0.7rem 1.2rem;
-  border-top: 1px solid var(--border-soft);
-  display: flex;
-  gap: 0.5rem;
-}
-
-.chat-input input {
-  flex: 1;
-  background: rgba(199, 125, 255, 0.05);
-  border: 1px solid var(--border-soft);
-  color: var(--text-primary);
-  padding: 0.55rem 0.85rem;
-  border-radius: 10px;
-  font-family: inherit;
-  font-size: 0.83rem;
-  outline: none;
-}
-
+.message { max-width: 85%; padding: 0.65rem 0.95rem; border-radius: 14px; font-size: 0.85rem; line-height: 1.5; animation: msgIn 0.3s ease; }
+@keyframes msgIn { from { transform: translateY(8px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+.message.bot { background: rgba(199, 125, 255, 0.12); border: 1px solid var(--border-soft); border-bottom-left-radius: 4px; align-self: flex-start; color: var(--text-primary); }
+.message.user { background: linear-gradient(135deg, var(--violet-1), var(--violet-3)); color: white; border-bottom-right-radius: 4px; align-self: flex-end; }
+.message.bot a { color: var(--violet-2); text-decoration: underline; word-break: break-all; }
+.chat-quick { padding: 0 1.2rem 0.7rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.quick-btn { background: rgba(199, 125, 255, 0.08); border: 1px solid var(--border-soft); color: var(--violet-2); padding: 0.38rem 0.75rem; border-radius: 100px; font-size: 0.74rem; cursor: pointer; font-family: inherit; transition: all 0.2s; }
+.quick-btn:hover { background: rgba(199, 125, 255, 0.18); border-color: var(--violet-2); }
+.chat-input { padding: 0.7rem 1.2rem; border-top: 1px solid var(--border-soft); display: flex; gap: 0.5rem; }
+.chat-input input { flex: 1; background: rgba(199, 125, 255, 0.05); border: 1px solid var(--border-soft); color: var(--text-primary); padding: 0.55rem 0.85rem; border-radius: 10px; font-family: inherit; font-size: 0.83rem; outline: none; }
 .chat-input input::placeholder { color: var(--text-muted); }
 .chat-input input:focus { border-color: var(--violet-2); }
-
-.chat-input button {
-  background: linear-gradient(135deg, var(--violet-1), var(--violet-3));
-  border: none;
-  color: white;
-  width: 38px;
-  height: 38px;
-  border-radius: 10px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.2s;
-  flex-shrink: 0;
-}
-
+.chat-input button { background: linear-gradient(135deg, var(--violet-1), var(--violet-3)); border: none; color: white; width: 38px; height: 38px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; flex-shrink: 0; }
 .chat-input button:hover { transform: scale(1.05); }
 
 /* ===== RESPONSIVE ===== */
@@ -1190,44 +256,22 @@ body {
   .nav-menu { display: none; }
   .menu-toggle { display: block; }
   .nav-cta { padding: 0.55rem 1.1rem; font-size: 0.85rem; }
-  .nav-menu.mobile-open {
-    display: flex;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    flex-direction: column;
-    background: rgba(10, 2, 24, 0.97);
-    backdrop-filter: blur(20px);
-    padding: 1rem;
-    gap: 0.25rem;
-    border-bottom: 1px solid var(--border-soft);
-  }
+  .nav-menu.mobile-open { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: rgba(10, 2, 24, 0.97); backdrop-filter: blur(20px); padding: 1rem; gap: 0.25rem; border-bottom: 1px solid var(--border-soft); }
   .nav-menu.mobile-open a { padding: 0.75rem 1rem; }
 }
-
 @media (max-width: 768px) {
   .hero { padding: 3.5rem 1.25rem 2rem; }
-  .plans-section, .dedicated-section, .setup-section, .contact-section, .reviews-section {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
+  .plans-section, .dedicated-section, .setup-section, .contact-section, .reviews-section { padding-left: 1.25rem; padding-right: 1.25rem; }
   .plans-grid { grid-template-columns: 1fr; }
-  .chat-panel {
-    width: calc(100vw - 32px);
-    right: -8px;
-  }
+  .chat-panel { width: calc(100vw - 32px); right: -8px; }
   .chat-widget { bottom: 16px; right: 16px; }
 }
-
 @media (max-width: 480px) {
   .nav-container { padding: 0.85rem 1.25rem; gap: 0.5rem; }
   .logo { font-size: 1.1rem; gap: 0.5rem; }
   .logo-icon { width: 30px; height: 30px; }
   .nav-cta { display: none; }
-  .tabs { gap: 0.35rem; }
-  .tab { padding: 0.55rem 0.95rem; font-size: 0.82rem; }
-  .tab-label-soon { font-size: 0.6rem; }
+  .cat-tab { padding: 0.6rem 1.2rem; font-size: 0.85rem; min-width: 120px; }
   .plan-card { padding: 1.5rem 1.25rem; }
   .plan-price .amount { font-size: 2.4rem; }
 }
@@ -1247,7 +291,7 @@ body {
       <span>Amethyst<span class="accent">Hosting</span></span>
     </a>
     <ul class="nav-menu" id="navMenu">
-      <li><a href="#planes"><i class="fas fa-server"></i> Normales</a></li>
+      <li><a href="#planes"><i class="fas fa-server"></i> Planes</a></li>
       <li><a href="#dedicados"><i class="fas fa-microchip"></i> Dedicados</a></li>
       <li><a href="#setups"><i class="fas fa-toolbox"></i> Setups</a></li>
       <li><a href="#resenas"><i class="fas fa-star"></i> Reseñas</a></li>
@@ -1262,118 +306,30 @@ body {
 <section class="hero">
   <div class="hero-badge">Infraestructura premium · Salt Lake, Utah 🇺🇸</div>
   <h1>Hosting con el poder<br>del cristal <span class="gradient">amatista</span></h1>
-  <p>Servidores de alto rendimiento con procesadores AMD Ryzen 7, almacenamiento NVMe y red optimizada para que tu comunidad nunca experimente el lag.</p>
-  <div class="tabs">
-    <button class="tab active" data-tab="normales">
-      <i class="fas fa-server"></i> Normales
-    </button>
-    <button class="tab" data-tab="dedicados">
-      <i class="fas fa-microchip"></i> Dedicados
-      <span class="tab-label-soon">Próximamente</span>
-    </button>
-    <button class="tab" data-tab="setups">
-      <i class="fas fa-toolbox"></i> Setups
-    </button>
-  </div>
+  <p>Servidores de alto rendimiento con procesadores Intel, Ryzen 7 y Ryzen 9, almacenamiento NVMe y red optimizada para que tu comunidad nunca experimente el lag.</p>
 </section>
 
 <!-- PLANES NORMALES -->
 <section class="plans-section" id="planes">
   <div class="section-title">
     <h2>Planes Normales</h2>
-    <p>Rendimiento equilibrado para la mayoría de comunidades. Configuración instantánea, panel intuitivo y soporte humano 24/7.</p>
+    <p>Elige la categoría que mejor se adapte a tu comunidad. Desde el Standard hasta el potente Performance.</p>
   </div>
 
-  <div class="plans-grid">
-    <!-- Plan 1 -->
-    <div class="plan-card">
-      <div class="plan-name">Amethyst Shard</div>
-      <div class="plan-tag">Para empezar</div>
-      <div class="plan-price">
-        <span class="currency">$</span><span class="amount">5</span><span class="period">USD/mes</span>
-      </div>
-      <ul class="plan-specs">
-        <li><i class="fas fa-memory"></i> <strong>3 GB</strong> RAM DDR4 @3200MHz</li>
-        <li><i class="fas fa-hdd"></i> <strong>20 GB</strong> NVMe SSD</li>
-        <li><i class="fas fa-microchip"></i> AMD Ryzen 7 5700G @4.7GHz</li>
-        <li><i class="fas fa-layer-group"></i> <strong>8</strong> Threads</li>
-        <li><i class="fas fa-globe-americas"></i> 🇺🇸 Salt Lake, Utah</li>
-        <li><i class="fas fa-network-wired"></i> 1 IPv4</li>
-      </ul>
-      <a href="#contacto" class="plan-button">Comprar ahora</a>
-    </div>
+  <div class="category-tabs">
+    <button class="cat-tab active" data-cat="standard">
+      Standard <span>Intel Core i7</span>
+    </button>
+    <button class="cat-tab" data-cat="advanced">
+      Advanced <span>Ryzen 7 5700G</span>
+    </button>
+    <button class="cat-tab" data-cat="performance">
+      Performance <span>Ryzen 9 5900X</span>
+    </button>
+  </div>
 
-    <!-- Plan 2 -->
-    <div class="plan-card">
-      <div class="plan-name">Amethyst Cluster</div>
-      <div class="plan-tag">Para comunidades pequeñas</div>
-      <div class="plan-price">
-        <span class="currency">$</span><span class="amount">8</span><span class="period">USD/mes</span>
-      </div>
-      <ul class="plan-specs">
-        <li><i class="fas fa-memory"></i> <strong>5 GB</strong> RAM DDR4 @3200MHz</li>
-        <li><i class="fas fa-hdd"></i> <strong>30 GB</strong> NVMe SSD</li>
-        <li><i class="fas fa-microchip"></i> AMD Ryzen 7 5700G @4.7GHz</li>
-        <li><i class="fas fa-layer-group"></i> <strong>8</strong> Threads</li>
-        <li><i class="fas fa-globe-americas"></i> 🇺🇸 Salt Lake, Utah</li>
-        <li><i class="fas fa-network-wired"></i> 1 IPv4</li>
-      </ul>
-      <a href="#contacto" class="plan-button">Comprar ahora</a>
-    </div>
-
-    <!-- Plan 3 (POPULAR) -->
-    <div class="plan-card popular">
-      <div class="plan-name">Amethyst Geode</div>
-      <div class="plan-tag">El más elegido</div>
-      <div class="plan-price">
-        <span class="currency">$</span><span class="amount">12</span><span class="period">USD/mes</span>
-      </div>
-      <ul class="plan-specs">
-        <li><i class="fas fa-memory"></i> <strong>10 GB</strong> RAM DDR4 @3200MHz</li>
-        <li><i class="fas fa-hdd"></i> <strong>40 GB</strong> NVMe SSD</li>
-        <li><i class="fas fa-microchip"></i> AMD Ryzen 7 5700G @4.7GHz</li>
-        <li><i class="fas fa-layer-group"></i> <strong>8</strong> Threads</li>
-        <li><i class="fas fa-globe-americas"></i> 🇺🇸 Salt Lake, Utah</li>
-        <li><i class="fas fa-network-wired"></i> 1 IPv4</li>
-      </ul>
-      <a href="#contacto" class="plan-button">Comprar ahora</a>
-    </div>
-
-    <!-- Plan 4 -->
-    <div class="plan-card">
-      <div class="plan-name">Amethyst Crown</div>
-      <div class="plan-tag">Para servidores grandes</div>
-      <div class="plan-price">
-        <span class="currency">$</span><span class="amount">25</span><span class="period">USD/mes</span>
-      </div>
-      <ul class="plan-specs">
-        <li><i class="fas fa-memory"></i> <strong>15 GB</strong> RAM DDR4 @3200MHz</li>
-        <li><i class="fas fa-hdd"></i> <strong>50 GB</strong> NVMe SSD</li>
-        <li><i class="fas fa-microchip"></i> AMD Ryzen 7 5700G @4.7GHz</li>
-        <li><i class="fas fa-layer-group"></i> <strong>8</strong> Threads</li>
-        <li><i class="fas fa-globe-americas"></i> 🇺🇸 Salt Lake, Utah</li>
-        <li><i class="fas fa-network-wired"></i> 1 IPv4</li>
-      </ul>
-      <a href="#contacto" class="plan-button">Comprar ahora</a>
-    </div>
-
-    <!-- Plan 5 -->
-    <div class="plan-card">
-      <div class="plan-name">Amethyst Sovereign</div>
-      <div class="plan-tag">Máximo rendimiento</div>
-      <div class="plan-price">
-        <span class="currency">$</span><span class="amount">30</span><span class="period">USD/mes</span>
-      </div>
-      <ul class="plan-specs">
-        <li><i class="fas fa-memory"></i> <strong>30 GB</strong> RAM DDR4 @3200MHz</li>
-        <li><i class="fas fa-hdd"></i> <strong>60 GB</strong> NVMe SSD</li>
-        <li><i class="fas fa-microchip"></i> AMD Ryzen 7 5700G @4.7GHz</li>
-        <li><i class="fas fa-layer-group"></i> <strong>8</strong> Threads</li>
-        <li><i class="fas fa-globe-americas"></i> 🇺🇸 Salt Lake, Utah</li>
-        <li><i class="fas fa-network-wired"></i> 1 IPv4</li>
-      </ul>
-      <a href="#contacto" class="plan-button">Comprar ahora</a>
-    </div>
+  <div class="plans-grid" id="plansGrid">
+    <!-- Los planes se generan dinámicamente por JS -->
   </div>
 </section>
 
@@ -1391,8 +347,8 @@ body {
       <h3>Dedicado Standard</h3>
       <p class="sub">Hardware exclusivo para tu proyecto</p>
       <ul class="dedicated-specs">
-        <li><i class="fas fa-microchip"></i> AMD Ryzen 7 5700G @4.7GHz</li>
-        <li><i class="fas fa-memory"></i> RAM DDR4 @3200MHz</li>
+        <li><i class="fas fa-microchip"></i> Intel Core i7-6700K @4.0GHz</li>
+        <li><i class="fas fa-memory"></i> RAM DDR4 @2400MHz</li>
         <li><i class="fas fa-layer-group"></i> 8 Threads</li>
         <li><i class="fas fa-hdd"></i> NVMe SSD</li>
         <li><i class="fas fa-globe-americas"></i> 🇺🇸 Salt Lake, Utah</li>
@@ -1404,11 +360,11 @@ body {
     <div class="dedicated-card">
       <div class="dedicated-lock"><i class="fas fa-lock"></i></div>
       <span class="dedicated-soon-badge">Próximamente</span>
-      <h3>Dedicado Advanced</h3>
+      <h3>Dedicado Performance</h3>
       <p class="sub">Potencia amplificada para alto tráfico</p>
       <ul class="dedicated-specs">
         <li><i class="fas fa-microchip"></i> AMD Ryzen 9 5900X @4.8GHz</li>
-        <li><i class="fas fa-memory"></i> RAM DDR4</li>
+        <li><i class="fas fa-memory"></i> RAM DDR4 @3200MHz</li>
         <li><i class="fas fa-layer-group"></i> 16 Threads</li>
         <li><i class="fas fa-hdd"></i> NVMe SSD</li>
         <li><i class="fas fa-globe-americas"></i> 🇺🇸 Miami, Florida</li>
@@ -1425,7 +381,6 @@ body {
     <h2>Setups e Instalación</h2>
     <p>Te acompañamos en cada paso para que tu servidor esté listo en minutos. Soporte humano y guías detalladas para tu servidor.</p>
   </div>
-
   <div class="setup-grid">
     <div class="setup-card">
       <div class="setup-icon"><i class="fas fa-rocket"></i></div>
@@ -1438,7 +393,6 @@ body {
         <li>Accede al panel y juega</li>
       </ul>
     </div>
-
     <div class="setup-card">
       <div class="setup-icon"><i class="fas fa-plug"></i></div>
       <h3>Plugins y mods</h3>
@@ -1450,7 +404,6 @@ body {
         <li>Testeo y optimización</li>
       </ul>
     </div>
-
     <div class="setup-card">
       <div class="setup-icon"><i class="fas fa-bolt"></i></div>
       <h3>Optimización pro</h3>
@@ -1462,7 +415,6 @@ body {
         <li>Reporte de mejoras</li>
       </ul>
     </div>
-
     <div class="setup-card">
       <div class="setup-icon"><i class="fas fa-shield-alt"></i></div>
       <h3>Backups y seguridad</h3>
@@ -1493,9 +445,7 @@ body {
         <input type="radio" id="star2" name="rating" value="2"><label for="star2" class="fas fa-star"></label>
         <input type="radio" id="star1" name="rating" value="1"><label for="star1" class="fas fa-star"></label>
       </div>
-
       <textarea class="review-textarea" id="reviewText" placeholder="Escribe tu reseña anónima aquí..." required></textarea>
-      
       <button type="submit" class="submit-review-btn" id="submitReviewBtn">
         <i class="fas fa-paper-plane"></i> Publicar reseña
       </button>
@@ -1513,7 +463,6 @@ body {
     <h2>Contacto y Soporte</h2>
     <p>¿Listo para comenzar? Escríbenos por cualquiera de estos canales y te responderemos en minutos.</p>
   </div>
-
   <div class="contact-cards">
     <a href="https://discord.gg/V6K4Z3Ghf" target="_blank" rel="noopener" class="contact-card discord">
       <div class="contact-icon"><i class="fab fa-discord"></i></div>
@@ -1522,7 +471,6 @@ body {
         <p>Únete y abre un ticket</p>
       </div>
     </a>
-
     <a href="mailto:jersoncasanovas4@gmail.com" class="contact-card gmail">
       <div class="contact-icon"><i class="fas fa-envelope"></i></div>
       <div class="contact-info">
@@ -1559,7 +507,6 @@ body {
       <button class="quick-btn" data-q="specs">Especificaciones</button>
       <button class="quick-btn" data-q="ubicacion">Ubicación</button>
       <button class="quick-btn" data-q="soporte">Soporte</button>
-      <button class="quick-btn" data-q="dedicados">Dedicados</button>
     </div>
     <div class="chat-input">
       <input type="text" id="chatInput" placeholder="Escribe tu mensaje...">
@@ -1574,61 +521,131 @@ body {
 <script>
 /* ===== GENERACIÓN DE CRISTALES CAYENDO ===== */
 const crystalsContainer = document.getElementById('crystals');
-const crystalCount = 22;
-
-for (let i = 0; i < crystalCount; i++) {
+for (let i = 0; i < 22; i++) {
   const crystal = document.createElement('div');
   crystal.className = 'crystal';
   const size = Math.random() * 28 + 14;
-  const duration = Math.random() * 18 + 14;
-  const delay = Math.random() * -25;
-  const opacity = Math.random() * 0.45 + 0.18;
-  const left = Math.random() * 100;
-  
-  crystal.style.left = left + '%';
+  crystal.style.left = Math.random() * 100 + '%';
   crystal.style.width = size + 'px';
   crystal.style.height = (size * 1.45) + 'px';
-  crystal.style.animationDuration = duration + 's';
-  crystal.style.animationDelay = delay + 's';
-  crystal.style.setProperty('--max-opacity', opacity);
+  crystal.style.animationDuration = (Math.random() * 18 + 14) + 's';
+  crystal.style.animationDelay = Math.random() * -25 + 's';
+  crystal.style.setProperty('--max-opacity', Math.random() * 0.45 + 0.18);
   
   const shape = document.createElement('div');
   shape.className = 'crystal-shape';
   const hue = Math.random() * 35 + 265;
   const sat = Math.random() * 25 + 60;
   const light = Math.random() * 15 + 55;
-  const hue2 = hue - 15;
-  shape.style.background = `linear-gradient(135deg, hsla(${hue}, ${sat}%, ${light}%, 0.55) 0%, hsla(${hue2}, ${sat-10}%, ${light-15}%, 0.7) 50%, hsla(${hue+10}, ${sat-20}%, ${light-25}%, 0.4) 100%)`;
+  shape.style.background = `linear-gradient(135deg, hsla(${hue}, ${sat}%, ${light}%, 0.55) 0%, hsla(${hue-15}, ${sat-10}%, ${light-15}%, 0.7) 50%, hsla(${hue+10}, ${sat-20}%, ${light-25}%, 0.4) 100%)`;
   shape.style.boxShadow = `0 0 ${size/2}px hsla(${hue}, ${sat}%, ${light}%, 0.35)`;
   
   crystal.appendChild(shape);
   crystalsContainer.appendChild(crystal);
 }
 
-/* ===== TABS ===== */
-const tabs = document.querySelectorAll('.tab');
-const sectionMap = { normales: 'planes', dedicados: 'dedicados', setups: 'setups' };
+/* ===== SISTEMA DINÁMICO DE PLANES ===== */
+const plansData = {
+  standard: {
+    cpu: "Intel Core i7-6700K @4.0GHz",
+    ramType: "DDR4 @2400MHz",
+    location: "🇺🇸 Salt Lake, Utah",
+    threads: "8",
+    plans: [
+      { ram: "3 GB", disk: "20 GB", price: "5", name: "Shard", tag: "Para empezar" },
+      { ram: "5 GB", disk: "30 GB", price: "8", name: "Cluster", tag: "Comunidades pequeñas" },
+      { ram: "10 GB", disk: "40 GB", price: "12", name: "Geode", tag: "El más elegido", popular: true },
+      { ram: "15 GB", disk: "50 GB", price: "25", name: "Crown", tag: "Servidores grandes" },
+      { ram: "30 GB", disk: "60 GB", price: "30", name: "Sovereign", tag: "Máximo rendimiento" }
+    ]
+  },
+  advanced: {
+    cpu: "AMD Ryzen 7 5700G @4.7GHz",
+    ramType: "DDR4 @3200MHz",
+    location: "🇺🇸 Salt Lake, Utah",
+    threads: "8",
+    plans: [
+      { ram: "4 GB", disk: "25 GB", price: "6", name: "Shard+", tag: "Potencia Ryzen" },
+      { ram: "6 GB", disk: "35 GB", price: "10", name: "Cluster+", tag: "Más estabilidad" },
+      { ram: "12 GB", disk: "45 GB", price: "15", name: "Geode+", tag: "Ryzen popular", popular: true },
+      { ram: "18 GB", disk: "55 GB", price: "28", name: "Crown+", tag: "Alto rendimiento" },
+      { ram: "32 GB", disk: "70 GB", price: "38", name: "Sovereign+", tag: "Servidor masivo" }
+    ]
+  },
+  performance: {
+    cpu: "AMD Ryzen 9 5900X @4.8GHz",
+    ramType: "DDR4 @3200MHz",
+    location: "🇺🇸 Miami, Florida",
+    threads: "16",
+    plans: [
+      { ram: "5 GB", disk: "30 GB", price: "8", name: "Perf Shard", tag: "Base rendimiento" },
+      { ram: "8 GB", disk: "40 GB", price: "14", name: "Perf Cluster", tag: "Fluidez extrema" },
+      { ram: "16 GB", disk: "50 GB", price: "22", name: "Perf Geode", tag: "Gamer pro", popular: true },
+      { ram: "24 GB", disk: "60 GB", price: "35", name: "Perf Crown", tag: "Servidor heavy" },
+      { ram: "48 GB", disk: "80 GB", price: "55", name: "Perf Sovereign", tag: "Máximo poder" }
+    ]
+  }
+};
 
-tabs.forEach(tab => {
+const plansGrid = document.getElementById('plansGrid');
+const catTabs = document.querySelectorAll('.cat-tab');
+
+function renderPlans(category) {
+  const data = plansData[category];
+  plansGrid.innerHTML = '';
+  
+  data.plans.forEach(plan => {
+    const card = document.createElement('div');
+    card.className = `plan-card ${plan.popular ? 'popular' : ''}`;
+    card.innerHTML = `
+      <div class="plan-name">${plan.name}</div>
+      <div class="plan-tag">${plan.tag}</div>
+      <div class="plan-price">
+        <span class="currency">$</span><span class="amount">${plan.price}</span><span class="period">USD/mes</span>
+      </div>
+      <ul class="plan-specs">
+        <li><i class="fas fa-memory"></i> <strong>${plan.ram}</strong> RAM ${data.ramType}</li>
+        <li><i class="fas fa-hdd"></i> <strong>${plan.disk}</strong> NVMe SSD</li>
+        <li><i class="fas fa-microchip"></i> ${data.cpu}</li>
+        <li><i class="fas fa-layer-group"></i> <strong>${data.threads}</strong> Threads</li>
+        <li><i class="fas fa-globe-americas"></i> ${data.location}</li>
+        <li><i class="fas fa-network-wired"></i> 1 IPv4</li>
+      </ul>
+      <a href="#contacto" class="plan-button">Comprar ahora</a>
+    `;
+    plansGrid.appendChild(card);
+  });
+  
+  // Reaplicar animación a las nuevas tarjetas
+  document.querySelectorAll('.plan-card').forEach(card => {
+    card.style.opacity = '0';
+    card.style.transform = 'translateY(30px)';
+    setTimeout(() => {
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease, border-color 0.4s ease, box-shadow 0.4s ease';
+      card.style.opacity = '1';
+      card.style.transform = 'translateY(0)';
+    }, 50);
+  });
+}
+
+catTabs.forEach(tab => {
   tab.addEventListener('click', () => {
-    tabs.forEach(t => t.classList.remove('active'));
+    catTabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
-    const target = sectionMap[tab.dataset.tab];
-    if (target) {
-      document.getElementById(target).scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    renderPlans(tab.dataset.cat);
   });
 });
+
+// Cargar planes iniciales
+renderPlans('standard');
+
 
 /* ===== MOBILE MENU ===== */
 const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('navMenu');
-menuToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('mobile-open');
-});
-navMenu.querySelectorAll('a').forEach(a => {
-  a.addEventListener('click', () => navMenu.classList.remove('mobile-open'));
-});
+menuToggle.addEventListener('click', () => navMenu.classList.toggle('mobile-open'));
+navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('mobile-open')));
+
 
 /* ===== CHAT WIDGET ===== */
 const chatToggle = document.getElementById('chatToggle');
@@ -1642,14 +659,13 @@ const chatQuick = document.getElementById('chatQuick');
 const responses = {
   comprar: 'Para comprar un plan, escríbenos por <a href="https://discord.gg/V6K4Z3Ghf" target="_blank">Discord</a> o a jersoncasanovas4@gmail.com. Te guiamos paso a paso y te activamos el servidor en minutos ✦',
   pago: 'Aceptamos múltiples métodos de pago (PayPal, tarjetas, criptomonedas y transferencias). Contáctanos por <a href="https://discord.gg/V6K4Z3Ghf" target="_blank">Discord</a> para indicarte las opciones disponibles en tu región.',
-  specs: 'Todos los planes usan AMD Ryzen 7 5700G @4.7GHz, RAM DDR4 @3200MHz, NVMe SSD, 8 threads y 1 IPv4. Solo varía la cantidad de RAM (3GB a 30GB) y almacenamiento (20GB a 60GB).',
-  ubicacion: 'Nuestros servidores están en Salt Lake, Utah 🇺🇸, con red optimizada de baja latencia para toda América.',
+  specs: 'Tenemos 3 categorías: Standard (Intel Core i7), Advanced (Ryzen 7 5700G) y Performance (Ryzen 9 5900X con 16 threads). Todos con NVMe SSD y red optimizada.',
+  ubicacion: 'Nuestros servidores Standard y Advanced están en Salt Lake, Utah 🇺🇸. Los Performance están en Miami, Florida 🇺🇸.',
   soporte: 'Nuestro soporte humano está disponible 24/7 por <a href="https://discord.gg/V6K4Z3Ghf" target="_blank">Discord</a> y Gmail. Tambien puedes abrir un ticket y te respondemos en minutos.',
-  dedicados: 'Los servidores dedicados estarán disponibles muy pronto. El plan Standard contará con Ryzen 7 5700G en Salt Lake, y el Advanced con Ryzen 9 5900X (16 threads) en Miami. Mantente atento a nuestro Discord 🔒',
   hola: '¡Hola! Soy Ametista, tu asistente IA. Puedes preguntarme sobre compra, especificaciones, soporte, ubicación y más ✦',
   gracias: '¡Gracias a ti por elegir Amethyst Hosting! Si tienes más preguntas, aquí estaré. Que disfrutes tu servidor 💎',
-  precio: 'Nuestros planes van desde $5 USD (3GB RAM) hasta $30 USD (30GB RAM). Revisa la sección de planes para ver todos los detalles.',
-  ram: 'Ofrecemos desde 3GB hasta 30GB de RAM DDR4 @3200MHz. Si necesitas más, próximamente lanzaremos servidores dedicados.',
+  precio: 'Nuestros planes van desde $5 USD (Standard) hasta $55 USD (Performance máximo). Revisa la sección de planes para ver todos los detalles.',
+  ram: 'Ofrecemos desde 3GB hasta 48GB de RAM dependiendo de la categoría que elijas (Standard, Advanced o Performance).',
   instalacion: 'La instalación es gratuita. Solo indícanos el juego, versión y mods/plugins que necesitas y lo configuramos por ti.'
 };
 
@@ -1658,17 +674,15 @@ function getResponse(text) {
   const keywords = {
     comprar: ['comprar', 'compro', 'compra', 'adquirir', 'obtener', 'contratar', 'plan'],
     pago: ['pago', 'pagar', 'paypal', 'tarjeta', 'cripto', 'transferencia', 'metodo'],
-    specs: ['spec', 'especificaciones', 'caracteristicas', 'tecnica', 'rendimiento', 'cpu', 'disco', 'ssd'],
+    specs: ['spec', 'especificaciones', 'caracteristicas', 'tecnica', 'rendimiento', 'cpu', 'disco', 'ssd', 'ryzen', 'intel'],
     ubicacion: ['ubicacion', 'donde', 'locacion', 'pais', 'server location', 'utah', 'salt lake', 'miami', 'florida'],
     soporte: ['soporte', 'ayuda', 'problema', 'error', 'ticket', 'staff', 'contacto'],
-    dedicados: ['dedicado', 'dedicados', 'exclusivo', 'advanced', 'ryzen 9', '5900x'],
     hola: ['hola', 'hey', 'buenas', 'saludos', 'hi', 'holi'],
     gracias: ['gracias', 'thanks', 'thank you', 'genial'],
     precio: ['precio', 'costo', 'vale', 'cuesta', 'cuanto'],
     ram: ['ram', 'memoria'],
     instalacion: ['instalacion', 'instalar', 'setup', 'configurar', 'configuracion']
   };
-  
   for (const key in keywords) {
     if (keywords[key].some(kw => text.includes(kw))) return responses[key];
   }
@@ -1703,48 +717,29 @@ function sendUserMessage(text) {
 
 chatToggle.addEventListener('click', () => {
   chatPanel.classList.toggle('open');
-  if (chatPanel.classList.contains('open')) {
-    setTimeout(() => chatInput.focus(), 100);
-  }
+  if (chatPanel.classList.contains('open')) setTimeout(() => chatInput.focus(), 100);
 });
-
-chatClose.addEventListener('click', () => {
-  chatPanel.classList.remove('open');
-});
-
+chatClose.addEventListener('click', () => chatPanel.classList.remove('open'));
 chatSend.addEventListener('click', () => sendUserMessage(chatInput.value));
-
-chatInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') sendUserMessage(chatInput.value);
-});
-
+chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendUserMessage(chatInput.value); });
 chatQuick.querySelectorAll('.quick-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const q = btn.dataset.q;
-    const questionText = btn.textContent;
-    sendUserMessage(questionText);
-  });
+  btn.addEventListener('click', () => sendUserMessage(btn.textContent));
 });
+
 
 /* ===== SISTEMA DE RESEÑAS ANÓNIMAS (A PRUEBA DE FALLOS) ===== */
 const reviewForm = document.getElementById('reviewForm');
 const reviewText = document.getElementById('reviewText');
 const reviewsList = document.getElementById('reviewsList');
 
-// Base de datos en memoria temporal (por si el navegador bloquea el archivo local)
 let memoryDB = []; 
-
-// Intentar cargar reseñas previas de forma segura
 try {
   const stored = localStorage.getItem('amethyst_anon_reviews');
-  if (stored) {
-    memoryDB = JSON.parse(stored);
-  }
+  if (stored) memoryDB = JSON.parse(stored);
 } catch (e) {
   console.warn("LocalStorage bloqueado. Usando memoria temporal para reseñas.");
 }
 
-// Si no hay reseñas, ponemos una de ejemplo para que no se vea vacío
 if (memoryDB.length === 0) {
   memoryDB.push({
     rating: 5,
@@ -1754,15 +749,7 @@ if (memoryDB.length === 0) {
 }
 
 function escapeHTML(str) {
-  return str.replace(/[&<>'"]/g, 
-    tag => ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      "'": '&#39;',
-      '"': '&quot;'
-    }[tag] || tag)
-  );
+  return str.replace(/[&<>'"]/g, tag => ({'&': '&amp;','<': '&lt;','>': '&gt;',"'": '&#39;','"': '&quot;'}[tag] || tag));
 }
 
 function renderReviews() {
@@ -1770,7 +757,6 @@ function renderReviews() {
     reviewsList.innerHTML = '<div class="no-reviews">Aún no hay reseñas. ¡Sé el primero en compartir tu experiencia anónima!</div>';
     return;
   }
-
   reviewsList.innerHTML = memoryDB.map(r => `
     <div class="review-card">
       <div class="review-card-header">
@@ -1779,9 +765,7 @@ function renderReviews() {
           <h4>Usuario Anónimo</h4>
           <span class="date">${r.date}</span>
         </div>
-        <div class="review-card-stars">
-          ${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}
-        </div>
+        <div class="review-card-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
       </div>
       <p class="review-card-text">${escapeHTML(r.text)}</p>
     </div>
@@ -1793,39 +777,21 @@ reviewForm.addEventListener('submit', (e) => {
   const ratingInput = document.querySelector('input[name="rating"]:checked');
   const text = reviewText.value.trim();
 
-  if (!ratingInput) {
-    alert('Por favor, selecciona una puntuación con estrellas.');
-    return;
-  }
+  if (!ratingInput) { alert('Por favor, selecciona una puntuación con estrellas.'); return; }
+  if (!text) { alert('Por favor, escribe tu reseña.'); return; }
 
-  if (!text) {
-    alert('Por favor, escribe tu reseña.');
-    return;
-  }
-
-  const newReview = {
-    rating: parseInt(ratingInput.value),
-    text: text,
-    date: "Justo ahora"
-  };
-
-  // Agregar al principio del array
+  const newReview = { rating: parseInt(ratingInput.value), text: text, date: "Justo ahora" };
   memoryDB.unshift(newReview);
   
-  // Intentar guardar de forma segura
-  try {
-    localStorage.setItem('amethyst_anon_reviews', JSON.stringify(memoryDB));
-  } catch (e) {
-    // Si falla, no pasa nada, queda guardado en memoryDB mientras la pestaña esté abierta
-  }
+  try { localStorage.setItem('amethyst_anon_reviews', JSON.stringify(memoryDB)); } catch (e) {}
   
-  // Limpiar formulario
   reviewText.value = '';
   document.querySelectorAll('input[name="rating"]').forEach(r => r.checked = false);
-  
-  // Renderizar de nuevo
   renderReviews();
 });
+
+renderReviews();
+
 
 /* ===== SCROLL REVEAL ===== */
 const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
@@ -1838,15 +804,12 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
-document.querySelectorAll('.plan-card, .dedicated-card, .setup-card, .contact-card, .review-form-container').forEach(card => {
+document.querySelectorAll('.dedicated-card, .setup-card, .contact-card, .review-form-container').forEach(card => {
   card.style.opacity = '0';
   card.style.transform = 'translateY(30px)';
   card.style.transition = 'opacity 0.6s ease, transform 0.6s ease, border-color 0.4s ease, box-shadow 0.4s ease';
   observer.observe(card);
 });
-
-// Inicializar reseñas al cargar la página
-renderReviews();
 </script>
 </body>
 </html>
