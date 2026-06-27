@@ -690,6 +690,162 @@ body {
   flex-shrink: 0;
 }
 
+/* ===== RESEÑAS ===== */
+.reviews-section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.review-form-container {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 20px;
+  padding: 2rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  margin-bottom: 2.5rem;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.star-rating {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  gap: 0.2rem;
+}
+
+.star-rating input[type="radio"] {
+  display: none;
+}
+
+.star-rating label {
+  font-size: 1.8rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.star-rating input[type="radio"]:checked ~ label,
+.star-rating label:hover,
+.star-rating label:hover ~ label {
+  color: #FFC107;
+}
+
+.review-textarea {
+  width: 100%;
+  background: rgba(199, 125, 255, 0.05);
+  border: 1px solid var(--border-soft);
+  color: var(--text-primary);
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.92rem;
+  outline: none;
+  resize: vertical;
+  min-height: 100px;
+  transition: border-color 0.3s;
+}
+
+.review-textarea:focus { border-color: var(--violet-2); }
+.review-textarea::placeholder { color: var(--text-muted); }
+
+.submit-review-btn {
+  align-self: flex-end;
+  background: linear-gradient(135deg, var(--violet-1), var(--violet-3));
+  color: white;
+  border: none;
+  padding: 0.7rem 1.6rem;
+  border-radius: 10px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.submit-review-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(157, 78, 221, 0.4);
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.review-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 18px;
+  padding: 1.5rem;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  animation: msgIn 0.4s ease;
+}
+
+.review-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.anonymous-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(199, 125, 255, 0.1);
+  border: 2px solid var(--border-glow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--violet-2);
+  font-size: 1.1rem;
+}
+
+.review-card-meta h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.review-card-meta .date {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.review-card-stars {
+  margin-left: auto;
+  color: #FFC107;
+  font-size: 0.85rem;
+  display: flex;
+  gap: 0.15rem;
+}
+
+.review-card-text {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+.no-reviews {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 2rem;
+  border: 1px dashed var(--border-soft);
+  border-radius: 16px;
+}
+
 /* ===== CONTACTO ===== */
 .contact-section {
   max-width: 900px;
@@ -1052,7 +1208,7 @@ body {
 
 @media (max-width: 768px) {
   .hero { padding: 3.5rem 1.25rem 2rem; }
-  .plans-section, .dedicated-section, .setup-section, .contact-section {
+  .plans-section, .dedicated-section, .setup-section, .contact-section, .reviews-section {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
@@ -1094,6 +1250,7 @@ body {
       <li><a href="#planes"><i class="fas fa-server"></i> Normales</a></li>
       <li><a href="#dedicados"><i class="fas fa-microchip"></i> Dedicados</a></li>
       <li><a href="#setups"><i class="fas fa-toolbox"></i> Setups</a></li>
+      <li><a href="#resenas"><i class="fas fa-star"></i> Reseñas</a></li>
       <li><a href="#contacto"><i class="fas fa-headset"></i> Contacto</a></li>
     </ul>
     <a href="#contacto" class="nav-cta">Comprar ahora</a>
@@ -1320,6 +1477,36 @@ body {
   </div>
 </section>
 
+<!-- RESEÑAS -->
+<section class="reviews-section" id="resenas">
+  <div class="section-title">
+    <h2>Reseñas de la comunidad</h2>
+    <p>Tu opinión nos importa. Comparte tu experiencia de forma completamente anónima.</p>
+  </div>
+
+  <div class="review-form-container">
+    <form class="review-form" id="reviewForm">
+      <div class="star-rating">
+        <input type="radio" id="star5" name="rating" value="5" required><label for="star5" class="fas fa-star"></label>
+        <input type="radio" id="star4" name="rating" value="4"><label for="star4" class="fas fa-star"></label>
+        <input type="radio" id="star3" name="rating" value="3"><label for="star3" class="fas fa-star"></label>
+        <input type="radio" id="star2" name="rating" value="2"><label for="star2" class="fas fa-star"></label>
+        <input type="radio" id="star1" name="rating" value="1"><label for="star1" class="fas fa-star"></label>
+      </div>
+
+      <textarea class="review-textarea" id="reviewText" placeholder="Escribe tu reseña anónima aquí..." required></textarea>
+      
+      <button type="submit" class="submit-review-btn" id="submitReviewBtn">
+        <i class="fas fa-paper-plane"></i> Publicar reseña
+      </button>
+    </form>
+  </div>
+
+  <div class="reviews-list" id="reviewsList">
+    <!-- Las reseñas se inyectan aquí -->
+  </div>
+</section>
+
 <!-- CONTACTO -->
 <section class="contact-section" id="contacto">
   <div class="section-title">
@@ -1407,8 +1594,7 @@ for (let i = 0; i < crystalCount; i++) {
   
   const shape = document.createElement('div');
   shape.className = 'crystal-shape';
-  // Variaciones de tono amatista
-  const hue = Math.random() * 35 + 265; // 265-300 (violeta/morado)
+  const hue = Math.random() * 35 + 265;
   const sat = Math.random() * 25 + 60;
   const light = Math.random() * 15 + 55;
   const hue2 = hue - 15;
@@ -1502,7 +1688,6 @@ function sendUserMessage(text) {
   addMessage(text, 'user');
   chatInput.value = '';
   
-  // Indicador de "escribiendo"
   const typing = document.createElement('div');
   typing.className = 'message bot';
   typing.innerHTML = '<i class="fas fa-ellipsis-h"></i> escribiendo...';
@@ -1541,6 +1726,107 @@ chatQuick.querySelectorAll('.quick-btn').forEach(btn => {
   });
 });
 
+/* ===== SISTEMA DE RESEÑAS ANÓNIMAS (A PRUEBA DE FALLOS) ===== */
+const reviewForm = document.getElementById('reviewForm');
+const reviewText = document.getElementById('reviewText');
+const reviewsList = document.getElementById('reviewsList');
+
+// Base de datos en memoria temporal (por si el navegador bloquea el archivo local)
+let memoryDB = []; 
+
+// Intentar cargar reseñas previas de forma segura
+try {
+  const stored = localStorage.getItem('amethyst_anon_reviews');
+  if (stored) {
+    memoryDB = JSON.parse(stored);
+  }
+} catch (e) {
+  console.warn("LocalStorage bloqueado. Usando memoria temporal para reseñas.");
+}
+
+// Si no hay reseñas, ponemos una de ejemplo para que no se vea vacío
+if (memoryDB.length === 0) {
+  memoryDB.push({
+    rating: 5,
+    text: "El mejor hosting que he probado. Cero lag y el soporte responde al instante.",
+    date: "Hace 3 días"
+  });
+}
+
+function escapeHTML(str) {
+  return str.replace(/[&<>'"]/g, 
+    tag => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;'
+    }[tag] || tag)
+  );
+}
+
+function renderReviews() {
+  if (memoryDB.length === 0) {
+    reviewsList.innerHTML = '<div class="no-reviews">Aún no hay reseñas. ¡Sé el primero en compartir tu experiencia anónima!</div>';
+    return;
+  }
+
+  reviewsList.innerHTML = memoryDB.map(r => `
+    <div class="review-card">
+      <div class="review-card-header">
+        <div class="anonymous-icon"><i class="fas fa-user-secret"></i></div>
+        <div class="review-card-meta">
+          <h4>Usuario Anónimo</h4>
+          <span class="date">${r.date}</span>
+        </div>
+        <div class="review-card-stars">
+          ${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}
+        </div>
+      </div>
+      <p class="review-card-text">${escapeHTML(r.text)}</p>
+    </div>
+  `).join('');
+}
+
+reviewForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const ratingInput = document.querySelector('input[name="rating"]:checked');
+  const text = reviewText.value.trim();
+
+  if (!ratingInput) {
+    alert('Por favor, selecciona una puntuación con estrellas.');
+    return;
+  }
+
+  if (!text) {
+    alert('Por favor, escribe tu reseña.');
+    return;
+  }
+
+  const newReview = {
+    rating: parseInt(ratingInput.value),
+    text: text,
+    date: "Justo ahora"
+  };
+
+  // Agregar al principio del array
+  memoryDB.unshift(newReview);
+  
+  // Intentar guardar de forma segura
+  try {
+    localStorage.setItem('amethyst_anon_reviews', JSON.stringify(memoryDB));
+  } catch (e) {
+    // Si falla, no pasa nada, queda guardado en memoryDB mientras la pestaña esté abierta
+  }
+  
+  // Limpiar formulario
+  reviewText.value = '';
+  document.querySelectorAll('input[name="rating"]').forEach(r => r.checked = false);
+  
+  // Renderizar de nuevo
+  renderReviews();
+});
+
 /* ===== SCROLL REVEAL ===== */
 const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
 const observer = new IntersectionObserver((entries) => {
@@ -1552,12 +1838,15 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, observerOptions);
 
-document.querySelectorAll('.plan-card, .dedicated-card, .setup-card, .contact-card').forEach(card => {
+document.querySelectorAll('.plan-card, .dedicated-card, .setup-card, .contact-card, .review-form-container').forEach(card => {
   card.style.opacity = '0';
   card.style.transform = 'translateY(30px)';
   card.style.transition = 'opacity 0.6s ease, transform 0.6s ease, border-color 0.4s ease, box-shadow 0.4s ease';
   observer.observe(card);
 });
+
+// Inicializar reseñas al cargar la página
+renderReviews();
 </script>
 </body>
 </html>
