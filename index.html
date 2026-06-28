@@ -3,24 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Amethyst Hosting · Premium Infrastructure</title>
+<title>MIhosting · Infraestructura Premium Tech</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@200;300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
 :root {
-  --bg-deep: #0a0a0c;
-  --bg-surface: #111114;
-  --bg-elevated: #16161a;
-  --accent: #9d4edd;
-  --accent-dim: rgba(157, 78, 221, 0.1);
-  --accent-glow: rgba(157, 78, 221, 0.4);
-  --text-primary: #f5f5f7;
-  --text-secondary: #a1a1a6;
-  --text-muted: #6e6e73;
-  --border-soft: rgba(255, 255, 255, 0.06);
-  --border-hover: rgba(157, 78, 221, 0.3);
+  --bg-void: #060814;
+  --bg-deep: #080b1a;
+  --bg-surface: rgba(12, 18, 38, 0.6);
+  --bg-elevated: rgba(20, 28, 56, 0.8);
+  --blue-electric: #007bff;
+  --cyan-tech: #00d2ff;
+  --violet-glow: #6a00ff;
+  --text-primary: #eaf2ff;
+  --text-secondary: #8b9bb4;
+  --text-muted: #5a6a85;
+  --border-neon: rgba(0, 210, 255, 0.25);
+  --border-soft: rgba(255, 255, 255, 0.05);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -28,300 +29,622 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: 'Inter', sans-serif;
-  background: var(--bg-deep);
+  background: var(--bg-void);
   color: var(--text-primary);
   min-height: 100vh;
   overflow-x: hidden;
   font-weight: 300;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  position: relative;
 }
 
-/* ===== FONDO DE PARTÍCULAS (STARDUST) ===== */
-.particles-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
-.particle { position: absolute; background: var(--accent); border-radius: 50%; opacity: 0; animation: fallStardust linear infinite; }
-@keyframes fallStardust {
-  0% { transform: translateY(-100px) translateX(0); opacity: 0; }
-  10% { opacity: 0.3; }
-  90% { opacity: 0.3; }
-  100% { transform: translateY(100vh) translateX(20px); opacity: 0; }
+/* =========================================
+   1. FONDO ANIMADO CON PROFUNDIDAD 3D
+   ========================================= */
+.bg-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 0%, rgba(0, 123, 255, 0.08), transparent 60%),
+              radial-gradient(ellipse at 80% 100%, rgba(106, 0, 255, 0.05), transparent 50%),
+              var(--bg-void);
 }
 
-/* ===== NAVBAR ===== */
+/* Perspectiva 3D para la cuadrícula */
+.bg-perspective {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  transform: translate(-50%, -50%) rotateX(65deg) translateZ(0);
+  background-image: 
+    linear-gradient(var(--border-neon) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-neon) 1px, transparent 1px);
+  background-size: 60px 60px;
+  opacity: 0.15;
+  animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+  0% { transform: translate(-50%, -50%) rotateX(65deg) translateY(0); }
+  100% { transform: translate(-50%, -50%) rotateX(65deg) translateY(60px); }
+}
+
+/* Cubos de datos 3D flotantes */
+.cube-container {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  transform-style: preserve-3d;
+  animation: floatCube 20s linear infinite;
+}
+
+.cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotateCube 15s linear infinite;
+}
+
+.cube div {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border: 1px solid var(--cyan-tech);
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+  background: rgba(0, 210, 255, 0.02);
+}
+
+.cube .face-front { transform: translateZ(30px); }
+.cube .face-back { transform: rotateY(180deg) translateZ(30px); }
+.cube .face-right { transform: rotateY(90deg) translateZ(30px); }
+.cube .face-left { transform: rotateY(-90deg) translateZ(30px); }
+.cube .face-top { transform: rotateX(90deg) translateZ(30px); }
+.cube .face-bottom { transform: rotateX(-90deg) translateZ(30px); }
+
+@keyframes rotateCube {
+  0% { transform: rotateX(0deg) rotateY(0deg); }
+  100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+
+@keyframes floatCube {
+  0% { transform: translateY(110vh) translateX(0) scale(0.5); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-20vh) translateX(50px) scale(1.2); opacity: 0; }
+}
+
+/* =========================================
+   2. PANEL DE NAVEGACIÓN
+   ========================================= */
 .navbar {
-  position: sticky; top: 0; z-index: 100;
-  background: rgba(10, 10, 12, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: rgba(6, 8, 20, 0.7);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid var(--border-soft);
 }
-.nav-container { max-width: 1200px; margin: 0 auto; padding: 1.25rem 2rem; display: flex; justify-content: space-between; align-items: center; }
-.logo { font-size: 1.1rem; font-weight: 500; letter-spacing: -0.01em; text-decoration: none; color: var(--text-primary); display: flex; align-items: center; gap: 0.6rem; }
-.logo-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 12px var(--accent-glow); }
-.nav-menu { display: flex; gap: 2.5rem; list-style: none; }
-.nav-menu a { font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; font-weight: 400; transition: color 0.3s ease; position: relative; }
-.nav-menu a:hover { color: var(--text-primary); }
-.menu-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.2rem; cursor: pointer; }
 
-/* ===== HERO ===== */
-.hero { max-width: 1200px; margin: 0 auto; padding: 6rem 2rem 4rem; text-align: center; }
-.hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 200; letter-spacing: -0.03em; margin-bottom: 1.5rem; line-height: 1.1; }
-.hero h1 span { font-weight: 600; color: var(--accent); }
-.hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 500px; margin: 0 auto; font-weight: 300; }
-
-/* ===== SECCIONES ===== */
-.section { max-width: 1200px; margin: 0 auto; padding: 5rem 2rem; }
-.section-header { margin-bottom: 3rem; text-align: center; }
-.section-header h2 { font-size: 1.75rem; font-weight: 400; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
-.section-header p { color: var(--text-muted); font-size: 0.95rem; font-weight: 300; }
-
-/* ===== CATEGORÍAS Y PLANES ===== */
-.category-tabs { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
-.cat-tab {
-  background: transparent; border: 1px solid var(--border-soft); color: var(--text-secondary);
-  padding: 0.7rem 1.5rem; border-radius: 8px; cursor: pointer; font-family: 'Inter', sans-serif;
-  font-weight: 500; font-size: 0.85rem; transition: all 0.3s ease; display: flex; flex-direction: column; gap: 0.1rem; align-items: center;
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
-.cat-tab span { font-size: 0.7rem; font-weight: 300; color: var(--text-muted); }
-.cat-tab:hover { border-color: var(--border-hover); color: var(--text-primary); }
-.cat-tab.active { background: var(--bg-elevated); border-color: var(--accent); color: var(--text-primary); box-shadow: 0 0 15px rgba(157, 78, 221, 0.1); }
-.cat-tab.active span { color: var(--accent); }
 
-.plans-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-.plan-card { background: var(--bg-surface); border: 1px solid var(--border-soft); border-radius: 8px; padding: 2.5rem 2rem; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; }
-.plan-card:hover { background: var(--bg-elevated); border-color: var(--border-hover); transform: translateY(-4px); }
-.plan-tier { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 1rem; font-weight: 500; }
-.plan-price { font-size: 2.5rem; font-weight: 300; margin-bottom: 2rem; letter-spacing: -0.02em; }
-.plan-price span { font-size: 0.9rem; color: var(--text-muted); font-weight: 300; }
-.plan-specs { list-style: none; margin-bottom: 2.5rem; flex-grow: 1; }
-.plan-specs li { font-size: 0.9rem; color: var(--text-secondary); padding: 0.6rem 0; border-bottom: 1px solid var(--border-soft); display: flex; align-items: center; gap: 0.75rem; }
+.logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.logo-icon {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotateCube 8s linear infinite;
+}
+.logo-icon::before, .logo-icon::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid var(--cyan-tech);
+  box-shadow: 0 0 10px var(--cyan-tech);
+}
+.logo-icon::before { transform: rotateY(0deg) translateZ(14px); }
+.logo-icon::after { transform: rotateY(90deg) translateZ(14px); border-color: var(--blue-electric); box-shadow: 0 0 10px var(--blue-electric); }
+
+.nav-menu {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-menu a {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.nav-menu a:not(.disabled):hover { color: var(--text-primary); text-shadow: 0 0 8px var(--cyan-tech); }
+.nav-menu a.active { color: var(--cyan-tech); }
+.nav-menu a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--cyan-tech);
+  box-shadow: 0 0 8px var(--cyan-tech);
+}
+
+.tag-soon {
+  font-size: 0.6rem;
+  font-weight: 600;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  background: rgba(0, 210, 255, 0.1);
+  color: var(--cyan-tech);
+  border: 1px solid var(--border-neon);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  animation: pulseTag 2s infinite;
+}
+
+@keyframes pulseTag {
+  0%, 100% { box-shadow: 0 0 5px rgba(0, 210, 255, 0.2); }
+  50% { box-shadow: 0 0 15px rgba(0, 210, 255, 0.6); }
+}
+
+.menu-toggle { display: none; background: none; border: none; color: var(--text-primary); font-size: 1.5rem; cursor: pointer; }
+
+/* =========================================
+   3. HERO Y SERVIDORES NORMALES
+   ========================================= */
+.hero {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 6rem 2rem 4rem;
+  text-align: center;
+}
+
+.hero h1 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
+}
+.hero h1 b { font-weight: 700; background: linear-gradient(90deg, var(--blue-electric), var(--cyan-tech)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero p { color: var(--text-secondary); max-width: 600px; margin: 0 auto; font-size: 1.1rem; }
+
+.section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.sub-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.sub-tab {
+  background: transparent;
+  border: 1px solid var(--border-soft);
+  color: var(--text-secondary);
+  padding: 0.8rem 2rem;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sub-tab:hover { border-color: var(--border-neon); color: var(--text-primary); }
+.sub-tab.active {
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.1), rgba(0, 210, 255, 0.05));
+  border-color: var(--cyan-tech);
+  color: var(--cyan-tech);
+  box-shadow: 0 0 15px rgba(0, 210, 255, 0.15);
+}
+
+.plans-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.plan-card {
+  background: var(--bg-surface);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.plan-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--cyan-tech), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.plan-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--border-neon);
+  background: var(--bg-elevated);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+.plan-card:hover::before { opacity: 1; }
+
+.plan-tier { font-family: 'Space Grotesk', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--cyan-tech); margin-bottom: 0.5rem; }
+.plan-price { font-size: 2.5rem; font-weight: 300; margin-bottom: 1.5rem; color: var(--text-primary); }
+.plan-price span { font-size: 0.9rem; color: var(--text-muted); }
+.plan-specs { list-style: none; margin-bottom: 2rem; }
+.plan-specs li { font-size: 0.9rem; color: var(--text-secondary); padding: 0.5rem 0; border-bottom: 1px solid var(--border-soft); display: flex; align-items: center; gap: 0.75rem; }
 .plan-specs li:last-child { border-bottom: none; }
-.plan-specs i { color: var(--accent); font-size: 0.75rem; }
-.plan-btn { background: transparent; color: var(--text-primary); border: 1px solid var(--border-soft); padding: 0.85rem; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.3s ease; text-decoration: none; text-align: center; }
-.plan-btn:hover { background: var(--accent); border-color: var(--accent); color: white; }
+.plan-specs i { color: var(--blue-electric); font-size: 0.75rem; }
+.plan-btn { display: block; text-align: center; padding: 0.85rem; border: 1px solid var(--cyan-tech); color: var(--cyan-tech); text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: 500; transition: all 0.3s ease; background: transparent; }
+.plan-btn:hover { background: var(--cyan-tech); color: var(--bg-void); box-shadow: 0 0 20px rgba(0, 210, 255, 0.4); }
 
-/* ===== DEDICADOS (COMING SOON) ===== */
-.dedicated-card { background: var(--bg-surface); border: 1px solid var(--border-soft); border-radius: 8px; padding: 4rem 2rem; text-align: center; position: relative; overflow: hidden; opacity: 0.6; pointer-events: none; }
-.dedicated-card::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.01) 10px, rgba(255, 255, 255, 0.01) 20px); }
-.dedicated-content { position: relative; z-index: 1; }
-.dedicated-tag { display: inline-block; padding: 0.3rem 0.8rem; background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-soft); border-radius: 100px; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 1.5rem; }
-.dedicated-card h3 { font-size: 1.5rem; font-weight: 400; margin-bottom: 0.5rem; }
-.dedicated-card p { color: var(--text-muted); font-size: 0.9rem; }
+/* =========================================
+   4. SECCIÓN DEDICADOS (BLOQUEADA)
+   ========================================= */
+.dedicated-wrapper {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+}
 
-/* ===== SETUPS ===== */
-.setups-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-.setup-item { padding: 2rem; border-left: 1px solid var(--border-soft); transition: border-color 0.3s ease; }
-.setup-item:hover { border-left-color: var(--accent); }
-.setup-icon { font-size: 1.2rem; color: var(--accent); margin-bottom: 1.25rem; }
-.setup-item h4 { font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; }
-.setup-item p { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; }
+.dedicated-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(6, 8, 20, 0.8), rgba(20, 30, 60, 0.4));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1;
+}
 
-/* ===== RESEÑAS ===== */
-.reviews-container { max-width: 700px; margin: 0 auto; }
-.review-form { background: var(--bg-surface); border: 1px solid var(--border-soft); border-radius: 8px; padding: 2rem; margin-bottom: 2rem; }
-.star-rating { display: flex; flex-direction: row-reverse; justify-content: center; gap: 0.5rem; margin-bottom: 1.5rem; }
-.star-rating input[type="radio"] { display: none; }
-.star-rating label { font-size: 1.5rem; color: var(--text-muted); cursor: pointer; transition: color 0.2s; }
-.star-rating input[type="radio"]:checked ~ label, .star-rating label:hover, .star-rating label:hover ~ label { color: var(--accent); }
-.review-textarea { width: 100%; background: var(--bg-deep); border: 1px solid var(--border-soft); color: var(--text-primary); padding: 1rem; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.9rem; outline: none; resize: vertical; min-height: 80px; margin-bottom: 1rem; transition: border-color 0.3s; }
-.review-textarea:focus { border-color: var(--border-hover); }
-.submit-review-btn { background: var(--accent); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 6px; font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.85rem; cursor: pointer; transition: opacity 0.3s; display: block; margin-left: auto; }
-.submit-review-btn:hover { opacity: 0.85; }
-.reviews-list { display: flex; flex-direction: column; gap: 1rem; }
-.review-card { background: var(--bg-surface); border: 1px solid var(--border-soft); border-radius: 8px; padding: 1.5rem; }
-.review-card-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
-.anonymous-icon { width: 32px; height: 32px; border-radius: 50%; background: var(--bg-elevated); border: 1px solid var(--border-soft); display: flex; align-items: center; justify-content: center; color: var(--accent); font-size: 0.85rem; }
-.review-card-meta h4 { font-size: 0.9rem; font-weight: 500; }
-.review-card-meta .date { font-size: 0.75rem; color: var(--text-muted); }
-.review-card-stars { margin-left: auto; color: var(--accent); font-size: 0.8rem; }
-.review-card-text { font-size: 0.9rem; color: var(--text-secondary); font-weight: 300; }
-.no-reviews { text-align: center; color: var(--text-muted); padding: 2rem; border: 1px dashed var(--border-soft); border-radius: 8px; font-size: 0.9rem; }
+.dedicated-content {
+  position: relative;
+  z-index: 2;
+  padding: 4rem 2rem;
+  text-align: center;
+  opacity: 0.9;
+  pointer-events: none;
+}
 
-/* ===== FOOTER / CONTACTO ===== */
-.footer { border-top: 1px solid var(--border-soft); padding: 4rem 2rem 2rem; margin-top: 4rem; }
-.footer-content { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; text-align: center; }
-.footer h3 { font-size: 1.5rem; font-weight: 300; margin-bottom: 0.5rem; letter-spacing: -0.01em; }
-.footer p { color: var(--text-muted); margin-bottom: 2.5rem; font-size: 0.9rem; }
-.contact-buttons { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-.contact-btn { display: flex; align-items: center; gap: 0.6rem; padding: 0.85rem 1.75rem; background: var(--bg-surface); border: 1px solid var(--border-soft); border-radius: 6px; color: var(--text-secondary); text-decoration: none; font-size: 0.85rem; font-weight: 500; transition: all 0.3s ease; }
-.contact-btn:hover { background: var(--bg-elevated); border-color: var(--border-hover); color: var(--text-primary); }
-.copyright { margin-top: 4rem; color: var(--text-muted); font-size: 0.8rem; font-weight: 300; }
+.lock-icon {
+  width: 50px;
+  height: 50px;
+  margin: 0 auto 2rem;
+  border: 1px solid var(--text-muted);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  background: rgba(0,0,0,0.3);
+}
 
-/* ===== ASISTENTE IA ===== */
-.chat-widget { position: fixed; bottom: 24px; right: 24px; z-index: 1000; }
-.chat-toggle { width: 48px; height: 48px; background: var(--bg-surface); border: 1px solid var(--border-soft); border-radius: 50%; cursor: pointer; color: var(--text-primary); display: flex; align-items: center; justify-content: center; transition: all 0.3s ease; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
-.chat-toggle:hover { border-color: var(--accent); color: var(--accent); }
-.chat-panel { position: absolute; bottom: 64px; right: 0; width: 340px; height: 420px; background: var(--bg-surface); border: 1px solid var(--border-soft); border-radius: 12px; display: none; flex-direction: column; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
-.chat-panel.open { display: flex; }
-.chat-header { padding: 1.25rem; border-bottom: 1px solid var(--border-soft); display: flex; align-items: center; gap: 0.75rem; }
-.chat-header h4 { font-size: 0.9rem; font-weight: 500; }
-.chat-header span { font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 2px; }
+.dedicated-content h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 400; margin-bottom: 0.5rem; color: var(--text-secondary); }
+.dedicated-content p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 3rem; }
+
+.dedicated-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.spec-group {
+  border-left: 1px solid var(--border-neon);
+  padding-left: 1.5rem;
+}
+
+.spec-group h4 { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.5rem; }
+.spec-group p { font-size: 1.1rem; font-weight: 400; color: var(--text-primary); }
+
+/* =========================================
+   5. FOOTER
+   ========================================= */
+.footer {
+  border-top: 1px solid var(--border-soft);
+  margin-top: 6rem;
+  padding: 5rem 2rem 3rem;
+  text-align: center;
+  background: rgba(6, 8, 20, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.footer h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 300; margin-bottom: 1rem; }
+.footer p { color: var(--text-muted); margin-bottom: 3rem; }
+
+.footer-btns { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+
+.footer-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.2rem 2.5rem;
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.1), rgba(0, 210, 255, 0.05));
+  border: 1px solid var(--border-neon);
+  border-radius: 8px;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.footer-btn:hover {
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.2), rgba(0, 210, 255, 0.1));
+  border-color: var(--cyan-tech);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 210, 255, 0.2);
+}
+
+.copyright { margin-top: 4rem; color: var(--text-muted); font-size: 0.8rem; }
+
+/* =========================================
+   6. ASISTENTE DE IA (ICONO 3D Y CHAT)
+   ========================================= */
+.chat-widget { position: fixed; bottom: 32px; right: 32px; z-index: 2000; }
+
+.chat-toggle {
+  width: 60px;
+  height: 60px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  perspective: 600px;
+}
+
+.orb-3d {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotateOrb 6s linear infinite;
+}
+
+.orb-face {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.orb-front { transform: translateZ(20px); background: radial-gradient(circle at 30% 30%, var(--cyan-tech), var(--blue-electric)); box-shadow: 0 0 20px var(--blue-electric); color: white; }
+.orb-back { transform: rotateY(180deg) translateZ(20px); background: radial-gradient(circle at 30% 30%, var(--blue-electric), var(--bg-deep)); box-shadow: 0 0 20px var(--cyan-tech); color: white; }
+.orb-ring {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  top: -5px;
+  left: -5px;
+  border: 1px solid var(--cyan-tech);
+  border-radius: 50%;
+  transform: rotateX(90deg);
+  box-shadow: 0 0 10px var(--cyan-tech);
+}
+
+@keyframes rotateOrb {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+.chat-panel {
+  position: absolute;
+  bottom: 80px;
+  right: 0;
+  width: 360px;
+  height: 450px;
+  background: rgba(8, 12, 26, 0.95);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-neon);
+  border-radius: 12px;
+  display: none;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 210, 255, 0.1);
+}
+
+.chat-panel.open { display: flex; animation: slideUp 0.3s ease; }
+@keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+.chat-header { padding: 1.5rem; border-bottom: 1px solid var(--border-soft); display: flex; align-items: center; gap: 0.75rem; }
+.chat-header h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 500; color: var(--text-primary); }
+.chat-header span { font-size: 0.75rem; color: var(--cyan-tech); display: block; }
 .chat-close { margin-left: auto; background: transparent; border: none; color: var(--text-muted); cursor: pointer; font-size: 1rem; transition: color 0.2s; }
 .chat-close:hover { color: var(--text-primary); }
-.chat-messages { flex: 1; padding: 1.25rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
+
+.chat-messages { flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
 .chat-messages::-webkit-scrollbar { width: 4px; }
-.chat-messages::-webkit-scrollbar-thumb { background: var(--border-soft); border-radius: 10px; }
+.chat-messages::-webkit-scrollbar-thumb { background: var(--border-neon); border-radius: 10px; }
+
 .msg { max-width: 85%; font-size: 0.85rem; line-height: 1.5; padding: 0.75rem 1rem; border-radius: 8px; }
 .msg.bot { background: var(--bg-elevated); border: 1px solid var(--border-soft); color: var(--text-secondary); border-top-left-radius: 2px; align-self: flex-start; }
-.msg.user { background: var(--accent-dim); border: 1px solid var(--border-hover); color: var(--text-primary); border-top-right-radius: 2px; align-self: flex-end; }
-.chat-input-area { padding: 1rem; border-top: 1px solid var(--border-soft); display: flex; gap: 0.5rem; }
+.msg.user { background: linear-gradient(135deg, var(--blue-electric), var(--cyan-tech)); color: white; border-top-right-radius: 2px; align-self: flex-end; }
+
+.chat-quick { padding: 0 1.5rem 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.quick-btn { background: rgba(0, 210, 255, 0.05); border: 1px solid var(--border-neon); color: var(--cyan-tech); padding: 0.4rem 0.8rem; border-radius: 6px; font-size: 0.75rem; cursor: pointer; font-family: 'Inter', sans-serif; transition: all 0.2s; }
+.quick-btn:hover { background: rgba(0, 210, 255, 0.15); }
+
+.chat-input-area { padding: 1.5rem; border-top: 1px solid var(--border-soft); display: flex; gap: 0.5rem; }
 .chat-input-area input { flex: 1; background: var(--bg-deep); border: 1px solid var(--border-soft); border-radius: 6px; padding: 0.65rem 0.85rem; color: var(--text-primary); font-family: 'Inter', sans-serif; font-size: 0.85rem; outline: none; transition: border-color 0.3s; }
-.chat-input-area input:focus { border-color: var(--border-hover); }
-.chat-input-area input::placeholder { color: var(--text-muted); }
-.chat-send { background: var(--accent); border: none; color: white; width: 36px; height: 36px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s; }
+.chat-input-area input:focus { border-color: var(--cyan-tech); }
+.chat-send { background: var(--cyan-tech); border: none; color: var(--bg-void); width: 38px; height: 38px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s; }
 .chat-send:hover { opacity: 0.8; }
 
-/* ===== RESPONSIVE ===== */
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .nav-menu { display: none; }
-  .nav-menu.mobile-open { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: var(--bg-deep); border-bottom: 1px solid var(--border-soft); padding: 1rem; gap: 1rem; }
+  .nav-menu.active { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; background: rgba(6, 8, 20, 0.98); padding: 2rem; gap: 1.5rem; border-bottom: 1px solid var(--border-soft); }
   .menu-toggle { display: block; }
   .hero { padding: 4rem 1.5rem 2rem; }
   .section { padding: 3rem 1.5rem; }
-  .chat-panel { width: calc(100vw - 48px); }
+  .chat-panel { width: calc(100vw - 64px); }
+  .dedicated-specs-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
 <body>
 
-<div class="particles-bg" id="particlesBg"></div>
+<!-- Fondo 3D -->
+<div class="bg-wrapper">
+  <div class="bg-perspective"></div>
+  <!-- Los cubos se generan por JS -->
+</div>
 
-<!-- NAVBAR -->
+<!-- Navbar -->
 <nav class="navbar">
   <div class="nav-container">
     <a href="#" class="logo">
-      <div class="logo-dot"></div>
-      Amethyst
+      <div class="logo-icon"></div>
+      MIhosting
     </a>
     <ul class="nav-menu" id="navMenu">
-      <li><a href="#normales">Servidores Normales</a></li>
-      <li><a href="#dedicados">Servidores Dedicados</a></li>
+      <li><a href="#normales" class="active">Servidores Normales</a></li>
+      <li><a href="#dedicados" class="disabled">Dedicados <span class="tag-soon">Próximamente</span></a></li>
       <li><a href="#setups">Setups & Instalación</a></li>
-      <li><a href="#resenas">Reseñas</a></li>
     </ul>
     <button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
   </div>
 </nav>
 
-<!-- HERO -->
+<!-- Hero -->
 <header class="hero">
-  <h1>Infraestructura <span>premium</span><br>para tu comunidad.</h1>
-  <p>Rendimiento ininterrumpido, hardware de última generación y soporte dedicado. Diseñado para exigentes.</p>
+  <h1>Rendimiento que trasciende.<br><b>Infraestructura Tech Premium.</b></h1>
+  <p>Servidores optimizados al milímetro con hardware de última generación. Bienvenido a la nueva era del hosting.</p>
 </header>
 
-<!-- SERVIDORES NORMALES -->
+<!-- Servidores Normales -->
 <section class="section" id="normales">
-  <div class="section-header">
-    <h2>Servidores Normales</h2>
-    <p>Selecciona la categoría que mejor se adapte a tu proyecto.</p>
+  <div class="sub-tabs">
+    <button class="sub-tab active" data-cat="starter">Starter</button>
+    <button class="sub-tab" data-cat="advanced">Advanced</button>
+    <button class="sub-tab" data-cat="performance">Performance</button>
   </div>
-
-  <div class="category-tabs">
-    <button class="cat-tab active" data-cat="standard">
-      Standard <span>Intel Core i7</span>
-    </button>
-    <button class="cat-tab" data-cat="advanced">
-      Advanced <span>Ryzen 7 5700G</span>
-    </button>
-    <button class="cat-tab" data-cat="performance">
-      Performance <span>Ryzen 9 5900X</span>
-    </button>
-  </div>
-
-  <div class="plans-grid" id="plansGrid">
-    <!-- Generado por JS -->
-  </div>
+  <div class="plans-grid" id="plansGrid"></div>
 </section>
 
-<!-- SERVIDORES DEDICADOS -->
+<!-- Dedicados Bloqueados -->
 <section class="section" id="dedicados">
-  <div class="section-header">
-    <h2>Servidores Dedicados</h2>
-    <p>Hardware exclusivo para máxima exigencia.</p>
-  </div>
-  <div class="dedicated-card">
+  <div class="dedicated-wrapper">
+    <div class="dedicated-bg"></div>
     <div class="dedicated-content">
-      <span class="dedicated-tag">Próximamente</span>
-      <h3>Coming Soon</h3>
-      <p>Estamos preparando algo excepcional. Servidores dedicados con Ryzen 9 próximamente disponibles.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SETUPS -->
-<section class="section" id="setups">
-  <div class="section-header">
-    <h2>Setups & Instalación</h2>
-    <p>Configuración profesional incluida con cada servicio.</p>
-  </div>
-  <div class="setups-grid">
-    <div class="setup-item">
-      <div class="setup-icon"><i class="fas fa-rocket"></i></div>
-      <h4>Despliegue Rápido</h4>
-      <p>Tu servidor activo en minutos con la configuración inicial lista para usar.</p>
-    </div>
-    <div class="setup-item">
-      <div class="setup-icon"><i class="fas fa-sliders"></i></div>
-      <h4>Optimización Pro</h4>
-      <p>Ajuste fino de flags y parámetros para exprimir el rendimiento del hardware.</p>
-    </div>
-    <div class="setup-item">
-      <div class="setup-icon"><i class="fas fa-shield-halved"></i></div>
-      <h4>Seguridad y Backups</h4>
-      <p>Respaldos automáticos y protección anti-DDoS para total tranquilidad.</p>
-    </div>
-  </div>
-</section>
-
-<!-- RESEÑAS -->
-<section class="section" id="resenas">
-  <div class="section-header">
-    <h2>Reseñas de la comunidad</h2>
-    <p>Comparte tu experiencia de forma anónima.</p>
-  </div>
-  <div class="reviews-container">
-    <form class="review-form" id="reviewForm">
-      <div class="star-rating">
-        <input type="radio" id="star5" name="rating" value="5" required><label for="star5" class="fas fa-star"></label>
-        <input type="radio" id="star4" name="rating" value="4"><label for="star4" class="fas fa-star"></label>
-        <input type="radio" id="star3" name="rating" value="3"><label for="star3" class="fas fa-star"></label>
-        <input type="radio" id="star2" name="rating" value="2"><label for="star2" class="fas fa-star"></label>
-        <input type="radio" id="star1" name="rating" value="1"><label for="star1" class="fas fa-star"></label>
+      <div class="lock-icon"><i class="fas fa-lock"></i></div>
+      <h3>Servidores Dedicados</h3>
+      <p>Próximamente. Arquitectura de alto rendimiento exclusivo para tu proyecto.</p>
+      <div class="dedicated-specs-grid">
+        <div class="spec-group">
+          <h4>Procesador</h4>
+          <p>AMD Ryzen 7 5700G @4.7 GHz</p>
+        </div>
+        <div class="spec-group">
+          <h4>Memoria</h4>
+          <p>RAM DDR4 @3200MHz</p>
+        </div>
+        <div class="spec-group">
+          <h4>Núcleos / Hilos</h4>
+          <p>8 Cores / 16 Threads</p>
+        </div>
+        <div class="spec-group">
+          <h4>Almacenamiento</h4>
+          <p>NVMe SSD Empresarial</p>
+        </div>
+        <div class="spec-group">
+          <h4>Centro de Datos</h4>
+          <p>🇺🇸 Miami, Florida</p>
+        </div>
+        <div class="spec-group">
+          <h4>Conectividad</h4>
+          <p>1 IPv4 Dedicada Low Latency</p>
+        </div>
       </div>
-      <textarea class="review-textarea" id="reviewText" placeholder="Escribe tu reseña anónima aquí..." required></textarea>
-      <button type="submit" class="submit-review-btn">Publicar reseña</button>
-    </form>
-    <div class="reviews-list" id="reviewsList"></div>
+    </div>
   </div>
 </section>
 
-<!-- FOOTER / CONTACTO -->
+<!-- Footer -->
 <footer class="footer" id="contacto">
-  <div class="footer-content">
-    <h3>Contacto y Soporte</h3>
-    <p>Atención personalizada para resolver cualquier duda.</p>
-    <div class="contact-buttons">
-      <a href="https://discord.gg/V6K4Z3Ghf" target="_blank" class="contact-btn">
-        <i class="fab fa-discord"></i> Discord
-      </a>
-      <a href="mailto:jersoncasanovas4@gmail.com" class="contact-btn">
-        <i class="fas fa-envelope"></i> Gmail
-      </a>
-    </div>
-    <div class="copyright">© 2025 Amethyst Hosting. Todos los derechos reservados.</div>
+  <h3>Soporte de Alto Nivel</h3>
+  <p>Conecta con nuestro equipo técnico directamente.</p>
+  <div class="footer-btns">
+    <a href="https://discord.gg/V6K4Z3Ghf" target="_blank" class="footer-btn">
+      <i class="fab fa-discord"></i> Discord
+    </a>
+    <a href="mailto:jersoncasanovas4@gmail.com" class="footer-btn">
+      <i class="fas fa-envelope"></i> Gmail Oficial
+    </a>
   </div>
+  <div class="copyright">© 2025 MIhosting. Ingeniería de infraestructura.</div>
 </footer>
 
-<!-- ASISTENTE IA -->
+<!-- Asistente IA -->
 <div class="chat-widget">
   <div class="chat-panel" id="chatPanel">
     <div class="chat-header">
       <div>
-        <h4>Asistente Amethyst</h4>
+        <h4>Asistente MIhosting</h4>
         <span>En línea</span>
       </div>
       <button class="chat-close" id="chatClose"><i class="fas fa-times"></i></button>
     </div>
     <div class="chat-messages" id="chatMessages">
-      <div class="msg bot">Hola. Soy el asistente virtual de Amethyst Hosting. ¿En qué puedo ayudarte?</div>
+      <div class="msg bot">Hola. Soy el asistente virtual de MIhosting. ¿En qué puedo ayudarte?</div>
+    </div>
+    <div class="chat-quick" id="chatQuick">
+      <button class="quick-btn">¿Cómo compro?</button>
     </div>
     <div class="chat-input-area">
       <input type="text" id="chatInput" placeholder="Escribe tu mensaje...">
@@ -329,162 +652,95 @@ body {
     </div>
   </div>
   <button class="chat-toggle" id="chatToggle" aria-label="Abrir chat">
-    <i class="fas fa-comment-dots"></i>
+    <div class="orb-3d">
+      <div class="orb-face orb-front"><i class="fas fa-microchip"></i></div>
+      <div class="orb-face orb-back"><i class="fas fa-server"></i></div>
+      <div class="orb-ring"></div>
+    </div>
   </button>
 </div>
 
 <script>
-/* ===== FONDO DE PARTÍCULAS SUTIL ===== */
-const bg = document.getElementById('particlesBg');
-for (let i = 0; i < 40; i++) {
-  const p = document.createElement('div');
-  p.className = 'particle';
-  const size = Math.random() * 2 + 1;
-  p.style.width = size + 'px';
-  p.style.height = size + 'px';
-  p.style.left = Math.random() * 100 + '%';
-  p.style.animationDuration = (Math.random() * 15 + 15) + 's';
-  p.style.animationDelay = Math.random() * 10 + 's';
-  bg.appendChild(p);
+/* ===== GENERACIÓN DE CUBOS 3D EN EL FONDO ===== */
+const bgWrapper = document.querySelector('.bg-wrapper');
+for (let i = 0; i < 8; i++) {
+  const container = document.createElement('div');
+  container.className = 'cube-container';
+  container.style.left = Math.random() * 100 + '%';
+  container.style.animationDuration = (Math.random() * 15 + 15) + 's';
+  container.style.animationDelay = Math.random() * -20 + 's';
+  container.style.transform = `scale(${Math.random() * 0.8 + 0.4})`;
+  
+  const cube = document.createElement('div');
+  cube.className = 'cube';
+  cube.innerHTML = `
+    <div class="face-front"></div><div class="face-back"></div>
+    <div class="face-right"></div><div class="face-left"></div>
+    <div class="face-top"></div><div class="face-bottom"></div>
+  `;
+  cube.style.animationDuration = (Math.random() * 10 + 10) + 's';
+  
+  container.appendChild(cube);
+  bgWrapper.appendChild(container);
 }
 
 /* ===== MENÚ MÓVIL ===== */
 const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('navMenu');
-menuToggle.addEventListener('click', () => navMenu.classList.toggle('mobile-open'));
-navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('mobile-open')));
+menuToggle.addEventListener('click', () => navMenu.classList.toggle('active'));
+navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navMenu.classList.remove('active')));
 
-/* ===== SISTEMA DINÁMICO DE PLANES ===== */
+/* ===== SISTEMA DE SUB-PESTAÑAS (PLANES) ===== */
 const plansData = {
-  standard: {
-    cpu: "Intel Core i7-6700K @4.0GHz",
-    ramType: "DDR4 @2400MHz", threads: "8", location: "🇺🇸 Salt Lake, Utah",
-    plans: [
-      { ram: "3 GB", disk: "20 GB", price: "5", tier: "Essential" },
-      { ram: "5 GB", disk: "30 GB", price: "8", tier: "Basic" },
-      { ram: "10 GB", disk: "40 GB", price: "12", tier: "Standard" },
-      { ram: "15 GB", disk: "50 GB", price: "25", tier: "Pro" },
-      { ram: "30 GB", disk: "60 GB", price: "30", tier: "Ultimate" }
-    ]
-  },
-  advanced: {
-    cpu: "AMD Ryzen 7 5700G @4.7GHz",
-    ramType: "DDR4 @3200MHz", threads: "8", location: "🇺🇸 Salt Lake, Utah",
-    plans: [
-      { ram: "4 GB", disk: "25 GB", price: "6", tier: "Essential" },
-      { ram: "6 GB", disk: "35 GB", price: "10", tier: "Basic" },
-      { ram: "12 GB", disk: "45 GB", price: "15", tier: "Standard" },
-      { ram: "18 GB", disk: "55 GB", price: "28", tier: "Pro" },
-      { ram: "32 GB", disk: "70 GB", price: "38", tier: "Ultimate" }
-    ]
-  },
-  performance: {
-    cpu: "AMD Ryzen 9 5900X @4.8GHz",
-    ramType: "DDR4 @3200MHz", threads: "16", location: "🇺🇸 Miami, Florida",
-    plans: [
-      { ram: "5 GB", disk: "30 GB", price: "8", tier: "Essential" },
-      { ram: "8 GB", disk: "40 GB", price: "14", tier: "Basic" },
-      { ram: "16 GB", disk: "50 GB", price: "22", tier: "Standard" },
-      { ram: "24 GB", disk: "60 GB", price: "35", tier: "Pro" },
-      { ram: "48 GB", disk: "80 GB", price: "55", tier: "Ultimate" }
-    ]
-  }
+  starter: [
+    { tier: "Starter S1", price: "5", ram: "4 GB", cpu: "Intel Xeon E3", disk: "20 GB SSD" },
+    { tier: "Starter S2", price: "8", ram: "6 GB", cpu: "Intel Xeon E3", disk: "30 GB SSD" },
+    { tier: "Starter S3", price: "12", ram: "8 GB", cpu: "Intel Xeon E3", disk: "40 GB SSD" }
+  ],
+  advanced: [
+    { tier: "Advanced A1", price: "15", ram: "10 GB", cpu: "Ryzen 5 3600", disk: "50 GB NVMe" },
+    { tier: "Advanced A2", price: "20", ram: "12 GB", cpu: "Ryzen 5 3600", disk: "60 GB NVMe" },
+    { tier: "Advanced A3", price: "25", ram: "16 GB", cpu: "Ryzen 5 3600", disk: "80 GB NVMe" }
+  ],
+  performance: [
+    { tier: "Performance P1", price: "30", ram: "20 GB", cpu: "Ryzen 7 5700G", disk: "100 GB NVMe" },
+    { tier: "Performance P2", price: "40", ram: "24 GB", cpu: "Ryzen 7 5700G", disk: "120 GB NVMe" },
+    { tier: "Performance P3", price: "55", ram: "32 GB", cpu: "Ryzen 9 5900X", disk: "150 GB NVMe" }
+  ]
 };
 
 const plansGrid = document.getElementById('plansGrid');
-const catTabs = document.querySelectorAll('.cat-tab');
+const subTabs = document.querySelectorAll('.sub-tab');
 
-function renderPlans(category) {
-  const data = plansData[category];
+function renderPlans(cat) {
   plansGrid.innerHTML = '';
-  
-  data.plans.forEach(plan => {
+  plansData[cat].forEach(p => {
     const card = document.createElement('div');
     card.className = 'plan-card';
     card.innerHTML = `
-      <div class="plan-tier">${plan.tier}</div>
-      <div class="plan-price">$${plan.price}<span>/mes</span></div>
+      <div class="plan-tier">${p.tier}</div>
+      <div class="plan-price">$${p.price}<span>/mes</span></div>
       <ul class="plan-specs">
-        <li><i class="fas fa-check"></i> ${plan.ram} RAM ${data.ramType}</li>
-        <li><i class="fas fa-check"></i> ${plan.disk} NVMe SSD</li>
-        <li><i class="fas fa-check"></i> ${data.cpu}</li>
-        <li><i class="fas fa-check"></i> ${data.threads} Threads</li>
-        <li><i class="fas fa-check"></i> ${data.location}</li>
-        <li><i class="fas fa-check"></i> 1 IPv4</li>
+        <li><i class="fas fa-check"></i> ${p.ram} RAM DDR4</li>
+        <li><i class="fas fa-check"></i> ${p.cpu}</li>
+        <li><i class="fas fa-check"></i> ${p.disk}</li>
+        <li><i class="fas fa-check"></i> 1 IPv4 Dedicada</li>
       </ul>
-      <a href="#contacto" class="plan-btn">Seleccionar plan</a>
+      <a href="#contacto" class="plan-btn">Seleccionar</a>
     `;
     plansGrid.appendChild(card);
   });
 }
 
-catTabs.forEach(tab => {
+subTabs.forEach(tab => {
   tab.addEventListener('click', () => {
-    catTabs.forEach(t => t.classList.remove('active'));
+    subTabs.forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     renderPlans(tab.dataset.cat);
   });
 });
 
-renderPlans('standard'); // Cargar por defecto
-
-/* ===== SISTEMA DE RESEÑAS ANÓNIMAS ===== */
-const reviewForm = document.getElementById('reviewForm');
-const reviewText = document.getElementById('reviewText');
-const reviewsList = document.getElementById('reviewsList');
-
-let memoryDB = []; 
-try {
-  const stored = localStorage.getItem('amethyst_reviews_min');
-  if (stored) memoryDB = JSON.parse(stored);
-} catch (e) {}
-
-if (memoryDB.length === 0) {
-  memoryDB.push({ rating: 5, text: "Servicio impecable, cero lag y soporte rápido.", date: "Hace 2 días" });
-}
-
-function escapeHTML(str) {
-  return str.replace(/[&<>'"]/g, tag => ({'&': '&amp;','<': '&lt;','>': '&gt;',"'": '&#39;','"': '&quot;'}[tag] || tag));
-}
-
-function renderReviews() {
-  if (memoryDB.length === 0) {
-    reviewsList.innerHTML = '<div class="no-reviews">Aún no hay reseñas. Sé el primero en opinar.</div>';
-    return;
-  }
-  reviewsList.innerHTML = memoryDB.map(r => `
-    <div class="review-card">
-      <div class="review-card-header">
-        <div class="anonymous-icon"><i class="fas fa-user-secret"></i></div>
-        <div class="review-card-meta">
-          <h4>Usuario Anónimo</h4>
-          <span class="date">${r.date}</span>
-        </div>
-        <div class="review-card-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>
-      </div>
-      <p class="review-card-text">${escapeHTML(r.text)}</p>
-    </div>
-  `).join('');
-}
-
-reviewForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const ratingInput = document.querySelector('input[name="rating"]:checked');
-  const text = reviewText.value.trim();
-
-  if (!ratingInput) { alert('Por favor, selecciona una puntuación.'); return; }
-  if (!text) { alert('Por favor, escribe tu reseña.'); return; }
-
-  memoryDB.unshift({ rating: parseInt(ratingInput.value), text: text, date: "Justo ahora" });
-  
-  try { localStorage.setItem('amethyst_reviews_min', JSON.stringify(memoryDB)); } catch (e) {}
-  
-  reviewText.value = '';
-  document.querySelectorAll('input[name="rating"]').forEach(r => r.checked = false);
-  renderReviews();
-});
-
-renderReviews();
+renderPlans('starter'); // Init
 
 /* ===== LÓGICA DEL ASISTENTE IA ===== */
 const chatToggle = document.getElementById('chatToggle');
@@ -493,14 +749,12 @@ const chatClose = document.getElementById('chatClose');
 const chatMessages = document.getElementById('chatMessages');
 const chatInput = document.getElementById('chatInput');
 const chatSend = document.getElementById('chatSend');
+const chatQuick = document.getElementById('chatQuick');
 
-chatToggle.addEventListener('click', () => {
-  chatPanel.classList.toggle('open');
-  if (chatPanel.classList.contains('open')) setTimeout(() => chatInput.focus(), 100);
-});
+chatToggle.addEventListener('click', () => chatPanel.classList.toggle('open'));
 chatClose.addEventListener('click', () => chatPanel.classList.remove('open'));
 
-function addMessage(text, sender) {
+function addMsg(text, sender) {
   const div = document.createElement('div');
   div.className = `msg ${sender}`;
   div.textContent = text;
@@ -508,26 +762,29 @@ function addMessage(text, sender) {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 }
 
-function processMessage(text) {
-  const lowerText = text.toLowerCase().trim();
-  if (lowerText.includes('cómo compro') || lowerText.includes('como compro') || lowerText.includes('comprar')) {
-    return "Para adquirir cualquier servicio, por favor contacta con nosotros vía Discord o Gmail para una atención personalizada.";
+function processMsg(text) {
+  const lower = text.toLowerCase();
+  if (lower.includes('cómo compro') || lower.includes('como compro') || lower.includes('comprar')) {
+    return "Para adquirir cualquier servicio o recibir una cotización personalizada, por favor inicia un ticket de soporte dentro de nuestra comunidad oficial en Discord o escríbenos directamente a nuestro Gmail de atención.";
   }
-  if (lowerText.includes('hola') || lowerText.includes('buenas')) return "Hola. ¿En qué puedo asistirte hoy?";
-  if (lowerText.includes('precio') || lowerText.includes('costo')) return "Nuestros planes inician desde $5 USD mensuales. Puedes revisar la sección de Servidores Normales para más detalles.";
-  return "Para consultas específicas, te recomiendo contactar directamente a nuestro equipo humano vía Discord o Gmail. Estarán encantados de ayudarte.";
+  return "Para consultas técnicas o de servicio, te recomiendo contactar directamente a nuestro equipo vía Discord o Gmail para una asistencia precisa.";
 }
 
-function sendMessage() {
-  const text = chatInput.value.trim();
-  if (!text) return;
-  addMessage(text, 'user');
+function sendMsg(text) {
+  if(!text.trim()) return;
+  addMsg(text, 'user');
   chatInput.value = '';
-  setTimeout(() => addMessage(processMessage(text), 'bot'), 600);
+  setTimeout(() => addMsg(processMsg(text), 'bot'), 600);
 }
 
-chatSend.addEventListener('click', sendMessage);
-chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+chatSend.addEventListener('click', () => sendMsg(chatInput.value));
+chatInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') sendMsg(chatInput.value); });
+
+chatQuick.addEventListener('click', (e) => {
+  if(e.target.classList.contains('quick-btn')) {
+    sendMsg(e.target.textContent);
+  }
+});
 </script>
 </body>
 </html>
