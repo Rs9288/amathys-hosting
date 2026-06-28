@@ -52,7 +52,6 @@ body {
               var(--bg-void);
 }
 
-/* Perspectiva 3D para la cuadrícula */
 .bg-perspective {
   position: absolute;
   top: 50%;
@@ -73,7 +72,6 @@ body {
   100% { transform: translate(-50%, -50%) rotateX(65deg) translateY(60px); }
 }
 
-/* Cubos de datos 3D flotantes */
 .cube-container {
   position: absolute;
   width: 60px;
@@ -693,18 +691,18 @@ navMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav
 /* ===== SISTEMA DE SUB-PESTAÑAS (PLANES) ===== */
 const plansData = {
   starter: [
-    { tier: "Starter S1", price: "5", ram: "4 GB", cpu: "Intel Xeon E3", disk: "20 GB SSD" },
-    { tier: "Starter S2", price: "8", ram: "6 GB", cpu: "Intel Xeon E3", disk: "30 GB SSD" },
-    { tier: "Starter S3", price: "12", ram: "8 GB", cpu: "Intel Xeon E3", disk: "40 GB SSD" }
+    { tier: "Starter S1", price: "5", ram: "4 GB", cpu: "Ryzen 7 5700G", disk: "20 GB SSD" },
+    { tier: "Starter S2", price: "8", ram: "6 GB", cpu: "Ryzen 7 5700G", disk: "30 GB SSD" },
+    { tier: "Starter S3", price: "12", ram: "8 GB", cpu: "Ryzen 7 5700G", disk: "40 GB SSD" }
   ],
   advanced: [
-    { tier: "Advanced A1", price: "15", ram: "10 GB", cpu: "Ryzen 5 3600", disk: "50 GB NVMe" },
-    { tier: "Advanced A2", price: "20", ram: "12 GB", cpu: "Ryzen 5 3600", disk: "60 GB NVMe" },
-    { tier: "Advanced A3", price: "25", ram: "16 GB", cpu: "Ryzen 5 3600", disk: "80 GB NVMe" }
+    { tier: "Advanced A1", price: "15", ram: "10 GB", cpu: "Ryzen 7 5700G", disk: "50 GB NVMe" },
+    { tier: "Advanced A2", price: "20", ram: "12 GB", cpu: "Ryzen 7 5700G", disk: "60 GB NVMe" },
+    { tier: "Advanced A3", price: "25", ram: "16 GB", cpu: "Ryzen 7 5700G", disk: "80 GB NVMe" }
   ],
   performance: [
-    { tier: "Performance P1", price: "30", ram: "20 GB", cpu: "Ryzen 7 5700G", disk: "100 GB NVMe" },
-    { tier: "Performance P2", price: "40", ram: "24 GB", cpu: "Ryzen 7 5700G", disk: "120 GB NVMe" },
+    { tier: "Performance P1", price: "30", ram: "20 GB", cpu: "Ryzen 9 5900X", disk: "100 GB NVMe" },
+    { tier: "Performance P2", price: "40", ram: "24 GB", cpu: "Ryzen 9 5900X", disk: "120 GB NVMe" },
     { tier: "Performance P3", price: "55", ram: "32 GB", cpu: "Ryzen 9 5900X", disk: "150 GB NVMe" }
   ]
 };
