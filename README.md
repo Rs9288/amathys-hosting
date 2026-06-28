@@ -1,1 +1,1 @@
-# amathys-hosting
+# Mi-hosting
